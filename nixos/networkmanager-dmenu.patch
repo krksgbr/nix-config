@@ -1,0 +1,24 @@
+diff --git a/networkmanager_dmenu b/networkmanager_dmenu
+index 6e8240d..912eadd 100755
+--- a/networkmanager_dmenu
++++ b/networkmanager_dmenu
+@@ -41,7 +41,7 @@ CONNS = CLIENT.get_connections()
+ if sys.version_info.major < 3:
+     str = unicode
+ 
+-def dmenu_cmd(num_lines, prompt="Networks", active_lines=None):  # pylint: disable=too-many-branches
++def dmenu_cmd(num_lines, prompt="Networks ", active_lines=None):  # pylint: disable=too-many-branches
+     """Parse config.ini if it exists and add options to the dmenu command
+ 
+     Args: args - num_lines: number of lines to display
+@@ -66,8 +66,8 @@ def dmenu_cmd(num_lines, prompt="Networks", active_lines=None):  # pylint: disab
+             dmenu_command = command[0]
+             dmenu_args = command[1:]
+             del args_dict["dmenu_command"]
+-        if "p" in args_dict and prompt == "Networks":
+-            prompt = args_dict["p"]
++        if "p" in args_dict and prompt == "Networks ":
++            prompt = args_dict["p"] + " "
+             del args_dict["p"]
+         elif "p" in args_dict:
+             del args_dict["p"]

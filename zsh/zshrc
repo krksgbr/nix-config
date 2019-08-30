@@ -1,0 +1,179 @@
+# COMPLETION
+zstyle ':completion:*' completer _expand _complete _ignored _approximate
+zstyle ':completion:*' completions 1
+zstyle ':completion:*' glob 1
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
+zstyle ':completion:*' max-errors 2 numeric
+zstyle ':completion:*' prompt '%e'
+zstyle ':completion:*' substitute 1
+
+
+# enable completion menu
+zstyle ':completion:*' menu select
+
+# for all completions: grouping the output
+zstyle ':completion:*' group-name ''
+
+# for all completions: show comments when present
+zstyle ':completion:*' verbose yes
+zstyle :compinstall filename '~/.zshrc'
+
+
+# COLORS
+
+autoload -U colors && colors
+
+ZSH_LS_COLORS="$LS_COLORS"
+zstyle ':completion:*' list-colors "${(@s.:.)ZSH_LS_COLORS}"
+
+# for all completions: grouping / headline / ...
+zstyle ':completion:*:messages' format $'\e[01;35m -- %d -- \e[00;00m'
+zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found -- \e[00;00m'
+zstyle ':completion:*:descriptions' format $'\e[01;34m -- %d -- \e[00;00m'
+zstyle ':completion:*:corrections' format $'\e[01;35m -- %d -- \e[00;00m'
+
+# statusline for many hits
+zstyle ':completion:*:default' select-prompt $'\e[01;35m -- Match %M    %P -- \e[00;00m'
+
+
+function halus(){
+	HALU_STREAM_URL='http://krks.info:8000'
+    local fo=$(printf "\e[101;1;97m");
+    local nofo=$(printf "\e[0m");
+
+    echo $(printf "\e[1;33m")
+    cat << "EOF"
+        _  _   __   __    _  _     ____  ____   __    ___  ____ 
+       / )( \ / _\ (  )  / )( \   / ___)(  _ \ / _\  / __)(  __)
+       ) __ (/    \/ (_/\) \/ ( _ \___ \ ) __//    \( (__  ) _) 
+       \_)(_/\_/\_/\____/\____/(_)(____/(__)  \_/\_/ \___)(____)
+
+EOF
+    echo $nofo
+
+    mpv --idle=yes --loop-playlist=force --cache=8192 --cache-initial=1024 $HALU_STREAM_URL | sed -n -e "s%\.*icy-title:\(.*\)% ${fo}  \1   ${nofo}%p"
+}
+
+function halure(){
+	ssh gbr@krks.info "cd ~/halu.space && docker-compose restart mpd"
+}
+
+
+
+function ema(){
+    xrandr  --output DP-1 --right-of eDP-1 --auto
+    # scaling degrades performance
+    # TODO find a workaround for this
+    # xrandr --output DP-1 --mode 3840x2160 --right-of eDP-1 --scale 0.75x0.75 --rate 25.00
+
+    sleep 1
+    ddcutil setvcp 10 100 --display 1
+    polybar external & disown
+    nitrogen --restore
+}
+
+function emd(){
+    pkill -f "polybar external"
+    xrandr --output DP-1 --off
+}
+
+
+# CUSTOMIZE VI-MODE INDICATOR
+#
+# https://dougblack.io/words/zsh-vi-mode.html
+# https://github.com/sindresorhus/pure/wiki
+
+#r emove default indicator
+RPS1=''
+
+# functions that are called on mode change
+# TODO look into https://github.com/JakobGM/dotfiles/blob/master/autoload/vim.zsh
+function zle-line-init zle-keymap-select {
+    # with custom colors
+    # NORMAL_MODE="%{$fg_bold[magenta]%} % NORMAL%"
+    # INSERT_MODE="%{$fg_bold[green]%} % INSERT%"
+    NORMAL_MODE="%{$fg_bold[magenta]%}"
+    INSERT_MODE="%{$fg_bold[green]%}"
+    VI_MODE_INDICATOR=${${KEYMAP/vicmd/$NORMAL_MODE }/(main|viins)/$INSERT_MODE }
+    PROMPT="%F$VI_MODE_INDICATOR❯ %f"
+    prompt_pure_async_tasks
+    prompt_pure_preprompt_render
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+
+# VI MODE
+# TEXT_OBJECTS SUPPORT (ca, ci, cs etc.)
+# https://github.com/ninrod/nin-vi-mode-static-cursor/blob/master/nin-vi-mode-static-cursor.plugin.zsh
+
+# since zsh 5.0.8, text objects were introduced. Let's use some of them.
+# see here for more info: http://www.zsh.org/mla/workers/2015/msg01017.html
+# and here: https://github.com/zsh-users/zsh/commit/d257f0143e69c3724466c4c92f59538d2f3fffd1
+
+# using select-bracketed as intructed on: https://github.com/zsh-users/zsh/blob/master/Functions/Zle/select-bracketed#L6
+# same as vim c+motion (change inside/around text-object).
+autoload -U select-bracketed
+zle -N select-bracketed
+for m in visual viopp; do
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+    bindkey -M $m $c select-bracketed
+  done
+done
+
+# using select-quoted as instructed on: https://github.com/zsh-users/zsh/blob/master/Functions/Zle/select-quoted#L6
+# expands c+motion (change inside/around + text-object) to quotes.
+autoload -U select-quoted
+zle -N select-quoted
+for m in visual viopp; do
+  for c in {a,i}{\',\",\`}; do
+    bindkey -M $m $c select-quoted
+  done
+done 
+
+# add support for the surround plugin emulation widget
+# due to KEYTIMEOUT set to a low number, you have to press the chords very, very fast.
+autoload -Uz surround
+zle -N delete-surround surround
+zle -N add-surround surround
+zle -N change-surround surround
+bindkey -a cs change-surround
+bindkey -a ds delete-surround
+bindkey -a ys add-surround
+bindkey -M visual S add-surround
+
+# gs will open up command line for editing in emacs
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd ' e' edit-command-line
+bindkey -M viins 'jk' vi-cmd-mode
+
+# clipboard
+# https://unix.stackexchange.com/questions/25765/pasting-from-clipboard-to-vi-enabled-zsh-or-bash-shell
+
+
+
+# ZAW
+# https://github.com/zsh-users/zaw
+
+zstyle ':filter-select' hist-find-no-dups yes # ignore duplicates in history source
+zstyle ':filter-select' max-lines 10 # use 10 lines for filter-select
+zstyle ':filter-select:highlight' title fg=brightblue,standout
+zstyle ':filter-select:highlight' makked fg=brightred,standout
+zstyle ':filter-select:highlight' matched fg=cyan,standout
+zstyle ':filter-select:highlight' selected fg=yellow,standout
+zstyle ':filter-select:highlight' error fg=red,standout
+
+# unbind execute-command from vicmd (not using it)
+bindkey -r -M vicmd ' '
+bindkey -r -M vicmd ':'
+
+# bind some with space as leader
+bindkey -M vicmd ' h' zaw-history
+bindkey -M vicmd ' p' zaw-process
+bindkey -M filterselect '^[' send-break
+
+
+# set cursor color
+echo -ne "\e]12;#00FF00\a"

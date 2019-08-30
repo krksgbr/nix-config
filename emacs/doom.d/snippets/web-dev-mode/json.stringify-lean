@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: JSON.stringify-lean
+# key: jS
+# --
+JSON.stringify(${1:})

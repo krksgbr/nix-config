@@ -1,0 +1,55 @@
+
+"" some references
+"" https://github.com/m4nuC/dotfiles/blob/master/.ideavimrc.txt
+"" https://github.com/beloglazov/vimrc/blob/master/.ideavimrc
+"" https://github.com/Valloric/dotfiles/blob/master/intellij/ideavimrc
+"" https://github.com/leihuxi/.dotfile/blob/master/.ideavimrc
+
+let mapleader = " "
+map <leader>a :action $SelectAll<CR>
+map <leader>,rn :action RenameElement<CR><Insert>
+"" map <leader>,D :action Back<CR>
+map <leader>g :action GotoFile<CR>
+""map <leader>,f :action reformatcode<cr>
+map <leader>,f :action Elm.RunExternalElmFormat<cr>
+
+map <leader>bb :action GotoFile<CR>
+map <leader>pf :action GotoFile<CR>
+map <leader>bk :action CloseContent<CR>
+"" clear searches
+map <Leader>, :noh<cr>
+
+imap jk <Esc>
+vmap jk <Esc>
+nmap gc :action CommentByLineComment<CR>
+vmap gc :action CommentByLineComment<CR>
+
+" key bindings for quickly moving between windows
+" h left, l right, k up, j down
+nmap <C-h> <c-w>h
+nmap <C-l> <c-w>l
+nmap <C-k> <c-w>k
+nmap <C-j> <c-w>j
+nmap <C-a>x :action CloseContent<CR>
+nmap <C-n> :action SelectNextOccurrence<CR>
+nnoremap <C-a>% :vsplit<CR>
+nnoremap <C-a>" :split<CR>
+nmap <leader>\ :action ToggleDistractionFreeMode<CR>
+nnoremap <Leader>n :action ActivateProjectToolWindow<CR>
+nnoremap <Leader>m :action HideSideWindows<CR>
+
+
+
+set surround
+set visualbell
+set relativenumber
+
+"" from https://gist.github.com/Mathew/8862fad7d15cdffc9ebeb4129f3f45c0
+"" Searching
+set hlsearch                    " highlight matches
+set incsearch                   " incremental searching
+set ignorecase                  " searches are case insensitive...
+set smartcase                   " ... unless they contain at least one capital letter
+set showmatch                   " and show matches
+"" set timeoutlen 10
+set multiple-cursors

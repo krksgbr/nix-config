@@ -1,0 +1,193 @@
+/******************************************************************************
+ * ROFI Color theme
+ * User: Rasi
+ * Copyright: Rasmus Steinke
+ ******************************************************************************/
+
+
+configuration {
+    display-ssh:                   "ssh";
+    display-run:                    "run";
+    display-drun:                   "run";
+    display-window:                 "win";
+    display-combi:                  "> ";
+}
+
+* {
+
+    base03:       rgba ( 0, 43, 54, 100 % );
+    base02:       rgba ( 7, 54, 66, 100 % );
+    base01:      rgba ( 88, 110, 117, 100 % );
+    base00:     rgba ( 101, 123, 131, 100 % );
+    base0:      rgba ( 131, 148, 150, 100 % );
+    base1:      rgba ( 147, 161, 161, 100 % );
+    base2:      rgba ( 238, 232, 213, 100 % );
+    base3:      rgba ( 253, 246, 227, 100 % );
+    yellow:     rgba ( 181, 137,   0, 100 % );
+    orange:     rgba ( 203,  75,  22, 100 % );
+    red:        rgba ( 220,  50,  47, 100 % );
+    magenta:    rgba ( 211,  54, 130, 100 % );
+    violet:     rgba ( 108, 113, 196, 100 % );
+    blue:        rgba ( 38, 139, 210, 100 % );
+    cyan:        rgba ( 42, 161, 152, 100 % );
+    green:      rgba ( 133, 153,   0, 100 % );
+
+	white:  rgba ( 255, 255, 255, 100 % );
+    foreground:                  @base0;
+
+    normal-foreground:           @foreground;
+    urgent-foreground:           @red;
+    active-foreground:           @magenta;
+
+    selected-normal-background:  @violet;
+    selected-normal-foreground:  @white;
+    selected-active-foreground:  @white;
+    selected-active-background:  @magenta;
+    selected-urgent-background:  @base03;
+    selected-urgent-foreground:  @foreground;
+
+    background:                  @base03;
+    bordercolor:                 @magenta;
+    normal-background:           @base03;
+    border-color:                @violet;
+    spacing:                     2;
+    separatorcolor:              @base01;
+    urgent-background:           @base03;
+
+    base03-a80:       rgba ( 0, 43, 54, 80 % );
+    background-color:            @base03;
+    transparent: rgba(0,0,0,0);
+    active-background:           @base03;
+    debug: rgba(255, 0, 0, 50%);
+}
+
+
+window {
+    background-color: @base03-a80;
+    padding:          5;
+}
+
+
+mainbox {
+    border:  0;
+    margin: 300px;
+    padding: 50px;
+    border:           1;
+}
+
+message {
+    border:       1px dash 0px 0px ;
+    border-color: @separatorcolor;
+    padding:      1px ;
+}
+
+textbox {
+    text-color: @foreground;
+}
+
+listview {
+    fixed-height: 0;
+    /* border:       2px dash 0px 0px ; */
+    /* border-color: @separatorcolor; */
+    spacing:      2px;
+    scrollbar:    true;
+    padding:      2px 0px 0px ;
+}
+
+element {
+    border:  0;
+    padding: 1px ;
+}
+
+element.normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+
+element.normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+
+element.normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+
+element.alternate.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+
+element.alternate.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+
+element.alternate.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+
+element.selected.normal {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+
+element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+
+element.selected.active {
+    text-color:       @selected-active-foreground;
+    background-color: @selected-active-background;
+}
+
+scrollbar {
+    width:        4px ;
+    border:       0;
+    handle-width: 8px ;
+    padding:      0;
+}
+sidebar {
+    border:       2px dash 0px 0px ;
+    border-color: @separatorcolor;
+}
+
+button.selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+
+inputbar {
+    border:       0px 0px 2px dash ;
+    border-color: @separatorcolor;
+    spacing:    0;
+    text-color: @normal-foreground;
+    padding:    0px 0px 30px 0px;
+    margin:    0px 0px 30px 0px;
+    children:   [ prompt, entry, case-indicator ];
+}
+
+case-indicator {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+
+entry {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+
+prompt {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+
+textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0px 0.3000em 0.0000em 0.0000em ;
+    text-color: inherit;
+}
