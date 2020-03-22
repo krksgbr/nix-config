@@ -37,7 +37,7 @@ zstyle ':completion:*:default' select-prompt $'\e[01;35m -- Match %M    %P -- \e
 
 
 function halus(){
-	HALU_STREAM_URL='http://krks.info:8000'
+	HALU_STREAM_URL='http://142.4.211.28:8000'
     local fo=$(printf "\e[101;1;97m");
     local nofo=$(printf "\e[0m");
 
@@ -55,13 +55,13 @@ EOF
 }
 
 function halure(){
-	ssh gbr@krks.info "cd ~/halu.space && docker-compose restart mpd"
+	ssh gbr@sshkrks.info "cd ~/halu.space && docker-compose restart mpd"
 }
 
 
 
 function ema(){
-    xrandr  --output DP-1 --right-of eDP-1 --auto
+    xrandr  --output DP-1 --left-of eDP-1 --auto
     # scaling degrades performance
     # TODO find a workaround for this
     # xrandr --output DP-1 --mode 3840x2160 --right-of eDP-1 --scale 0.75x0.75 --rate 25.00
