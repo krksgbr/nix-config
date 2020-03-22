@@ -48,8 +48,6 @@ in
         ".ideavimrc".source = ./dot/ideavimrc;
       };
 
-  fonts.fontconfig.enable = true;
-
   xsession.enable = true;
   xsession.windowManager.i3 = {
     enable = true;
