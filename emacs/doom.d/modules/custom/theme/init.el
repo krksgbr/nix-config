@@ -13,10 +13,6 @@
       org-bullets-bullet-list '(">")
       )
 
-;;(def-package-hook! solaire-mode :disable)
-
-
-
 (add-to-list 'custom-theme-load-path
              (expand-file-name "~/git/emacs-doom-themes/themes"))
 
@@ -34,16 +30,6 @@
 
 
 (setq doom-theme (nth g/themes-index g/themes))
-;;(setq doom-neotree-file-icons t)
-
-
-;; (def-package-hook! doom-themes
-;;  :pre-config
-;;  (message "running doom-themes pre-config")
-;;  ;; doesn't work when doom-themes is set to load from custom load-path
-;;  ;;(add-hook! 'doom-load-theme-hook 'g/doom-customize-faces)
-;; )
-
 
 (defun g/toggle-theme()
   (interactive)

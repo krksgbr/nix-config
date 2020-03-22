@@ -1,22 +1,6 @@
 ;;; config.el --- description -*- lexical-binding: t; -*-
 
 (tool-bar-mode -1)
-(defun g/edit-config()
-  (interactive)
-  (find-file (expand-file-name "config.el" doom-private-dir)))
-
-(defun g/edit-bindings()
-  (interactive)
-  (find-file (expand-file-name "+bindings.el" doom-private-dir)))
-
-(defun g/reload-config()
-  (interactive)
-  (load-file user-init-file))
-
-(defun g/edit-doom-config()
-  (interactive)
-  (doom-project-find-file doom-emacs-dir))
-
 
 ;; hooks
 
@@ -47,6 +31,10 @@
                               (ns-appearance . dark)
                               ))
   (setq dired-use-ls-dired nil))
+
+(setq evil-want-Y-yank-to-eol nil)
+(setq doom-themes-neotree-enable-variable-pitch nil)
+
 
 (provide 'config)
 ;;; config.el ends here
