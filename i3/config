@@ -134,7 +134,7 @@ bindsym $mod+Shift+space exec --no-startup-id rofi-kbd-layout
 bindsym $mod+Shift+n exec --no-startup-id networkmanager_dmenu
 
 # toggle tiling / floating
-#bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+grave floating toggle
 
 # change focus between tiling / floating windows
 #bindsym $mod+space focus mode_toggle
