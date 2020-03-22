@@ -21,8 +21,7 @@ in
     initExtra = ''
       ${zshrc}
       export PATH="$HOME/.emacs.d/bin:$PATH"
-      # start new tmux session
-      [ -z $TMUX ] && tmux
+      [ -z $TMUX ] && (tmux a &> /dev/null || tmux)
     '';
     sessionVariables = shellsCommon.sessionVariables
       // {
