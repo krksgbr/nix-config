@@ -18,9 +18,16 @@ in
       fpath+="$HOME/.zsh/functions"
       fpath+="$HOME/.zsh/completions"
     '';
-    initExtra = ''
+    initExtra =
+      let
+        PATH = builtins.concatStringsSep ":" [
+          "$HOME/.emacs.d/bin"
+          "$HOME/.yarn/bin"
+        ];
+      in
+      ''
       ${zshrc}
-      export PATH="$HOME/.emacs.d/bin:$PATH"
+      export PATH="${PATH}:$PATH"
       [ -z $TMUX ] && (tmux a &> /dev/null || tmux)
     '';
     sessionVariables = shellsCommon.sessionVariables
