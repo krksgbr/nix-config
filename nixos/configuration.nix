@@ -87,7 +87,7 @@ in
      (let
        lorri = builtins.fetchGit {
          url = "https://github.com/target/lorri.git";
-         rev = "f93989b34fe605798ecd841cea9c0ba6f8e00f91";
+         rev = "88c680c9abf0f04f2e294436d20073ccf26f0781";
        };
       in
       import lorri {}
