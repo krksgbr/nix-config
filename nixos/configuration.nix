@@ -94,6 +94,12 @@ in
      )
      unstable.nodePackages.node2nix
      unstable.electron # TODO update glyphcollector and get rid of this
+     nodejs
+     yarn
+     stack
+
+     xclip
+
      kitty
      unstable.idea.idea-community
      vim
@@ -108,6 +114,7 @@ in
      gopass
 
      # DE / Apps
+     gnome3.dconf
      arc-theme
      arc-icon-theme
      polybar
@@ -117,6 +124,8 @@ in
      gnome3.file-roller
      peek
      nitrogen
+     zoom
+     mpv
 
      (wrapChromiumApp {
        name = "chromium";
@@ -136,6 +145,9 @@ in
        comment = "Google Calendar";
        desktopName = "Calendar";
      })
+
+     exiftool
+     spotify
    ];
 
    virtualisation.virtualbox = {
