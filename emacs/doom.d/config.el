@@ -35,6 +35,8 @@
 (setq evil-want-Y-yank-to-eol nil)
 (setq doom-themes-neotree-enable-variable-pitch nil)
 
+(set-formatter! 'ormolu "ormolu" :modes '(haskell-mode))
+
 
 (provide 'config)
 ;;; config.el ends here
