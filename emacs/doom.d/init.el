@@ -105,7 +105,7 @@
        data              ; config/data formats
        ;;erlang            ; an elegant language for a more civilized age
        ;;elixir            ; erlang done right
-       ;;elm               ; care for a cup of TEA?
+       elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;;ess               ; emacs speaks statistics
        ;;fsharp           ; ML stands for Microsoft's Language
@@ -184,7 +184,6 @@
        :g
        ;; additional stuff that is not included in doom
        exec-path-from-shell
-       elm
        prettier
        tide
        web
