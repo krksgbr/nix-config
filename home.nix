@@ -44,7 +44,7 @@ in
         ".config/networkmanager-dmenu".source = ./networkmanager-dmenu;
         ".local/share/fonts".source = import ./fonts { inherit pkgs; };
         #".emacs.d".source = emacs.emacs-d;
-        ".doom.d".source = emacs.doom-d;
+        # ".doom.d".source = emacs.doom-d;
         ".ideavimrc".source = ./dot/ideavimrc;
       };
 
