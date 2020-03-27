@@ -287,7 +287,10 @@ in
   fonts.fonts = with pkgs; [ 
      liberation_ttf_v2
      iosevka
+     joypixels
   ];
+  fonts.enableDefaultFonts = false;
+  fonts.fontconfig.defaultFonts.emoji = ["JoyPixels"];
 
   # fonts.fontconfig.dpi = 210;
 
