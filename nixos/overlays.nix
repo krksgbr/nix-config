@@ -22,4 +22,20 @@ in
   });
 
   inherit unstable;
+
+  haskell =
+    let
+      ormolu = import (builtins.fetchGit {
+        name = "ormolu";
+        url = "https://github.com/tweag/ormolu.git";
+        rev = "55d8b7f8c482655ea575425e55352e650f304ea0";
+      }) { pkgs = self; };
+    in
+      super.haskell // {
+        packages = super.haskell.packages // {
+          "${ormolu.ormoluCompiler}" = super.haskell.packages.${ormolu.ormoluCompiler}.override {
+            overrides = ormolu.ormoluOverlay;
+          };
+        };
+      };
 }

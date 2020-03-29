@@ -93,6 +93,7 @@ in
       in
       import lorri {}
      )
+     haskellPackages.ormolu
      unstable.nodePackages.node2nix
      unstable.electron # TODO update glyphcollector and get rid of this
      nodejs
