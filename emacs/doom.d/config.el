@@ -19,9 +19,9 @@
          +write|init-org-mode))
 
 ;;(after! yasnippet
-  ;;(setq g/snippets-dir (concat +private-config-path "/snippets"))
-  ;;(setq yas--default-user-snippets-dir g/snippets-dir)
-  ;;(add-to-list 'yas-snippet-dirs g/snippets-dir))
+;;(setq g/snippets-dir (concat +private-config-path "/snippets"))
+;;(setq yas--default-user-snippets-dir g/snippets-dir)
+;;(add-to-list 'yas-snippet-dirs g/snippets-dir))
 
 (when doom-debug-mode
   (add-hook 'window-setup-hook (lambda () (switch-to-buffer "*Messages*"))))
