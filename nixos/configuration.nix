@@ -84,6 +84,7 @@ in
      nix-prefetch-scripts
      unstable.nixpkgs-fmt
      fzy
+     docker-compose
      (let
        lorri = builtins.fetchGit {
          url = "https://github.com/target/lorri.git";
@@ -300,8 +301,10 @@ in
   users.users.gabor = {
     shell = pkgs.zsh;
     isNormalUser = true;
-    extraGroups = [ "wheel" "video"];
+    extraGroups = [ "wheel" "video" "docker"];
   };
+
+  virtualisation.docker.enable = true;
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
