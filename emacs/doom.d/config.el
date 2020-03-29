@@ -36,7 +36,7 @@
 (setq doom-themes-neotree-enable-variable-pitch nil)
 
 (set-formatter! 'ormolu "ormolu" :modes '(haskell-mode))
-
+(set-formatter! 'nixpkgs-fmt "nixpkgs-fmt" :modes '(nix-mode))
 
 (provide 'config)
 ;;; config.el ends here
