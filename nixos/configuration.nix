@@ -4,16 +4,6 @@
 
 { config, pkgs, ... }:
 let
-  wrapChromiumApp = { app, name }:
-    pkgs.symlinkJoin {
-      inherit name;
-      paths = [ app ];
-      buildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/${name} \
-          --add-flags "--force-device-scale-factor=2"
-      '';
-    };
   nixosHardware = builtins.fetchGit {
     url = "https://github.com/NixOS/nixos-hardware.git";
     rev = "ed0d3cc198557b9260295aa8a384dd5080706aee";
@@ -24,13 +14,16 @@ in
     [
       # Include the results of the hardware scan.
       "${nixosHardware}/lenovo/thinkpad/t490"
-      ./hardware-configuration.nix
       ./cachix.nix
-      ./yubikey.nix
-      ./ddcutil.nix
+      ./hardware-configuration.nix
+      ./networking.nix
+      ./peripherals/ddcutil.nix
+      ./peripherals/udiskie.nix
+      ./peripherals/yubikey.nix
+      ./programs/apps.nix
+      ./programs/dev-tools.nix
+      ./users.nix
     ];
-
-
 
 
   # Use the systemd-boot EFI boot loader.
@@ -43,90 +36,18 @@ in
 
   nixpkgs.overlays = [ (import ./overlays.nix config) ];
 
-  # networking.hostName = "nixos"; # Define your hostname.
-  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  networking.networkmanager.enable = true;
-  networking.networkmanager.insertNameservers = [
-    "8.8.8.8"
-  ];
-  # networking.wireless.iwd.enable = true;
-  # networking.networkmanager.extraConfig = ''
-  # [device]
-  # wifi.backend=iwd
-  # '';
-
-
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  # i18n = {
-  #   consoleFont = "Lat2-Terminus16";
-  #   consoleKeyMap = "us";
-  #   defaultLocale = "en_US.UTF-8";
-  # };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs;
     [
       # system
       libnotify
-      udiskie
       killall
       brightnessctl
-      ddcutil
       s-tui
-
-      # dev
-      gnumake
-      gcc
-      cachix
-      git
-      wget
-      tree
-      tmux
-      rofi
-      htop-vim
       lm_sensors
-      ag
-      nix-prefetch-scripts
-      unstable.nixpkgs-fmt
-      fzy
-      docker-compose
-      (
-        let
-          lorri = builtins.fetchGit {
-            url = "https://github.com/target/lorri.git";
-            rev = "88c680c9abf0f04f2e294436d20073ccf26f0781";
-          };
-        in
-          import lorri {}
-      )
-      haskellPackages.ormolu
-      unstable.nodePackages.node2nix
-      nodejs
-      yarn
-      stack
-      xclip
-      unstable.nodePackages.node2nix
-      kitty
-      unstable.idea.idea-community
-      vim
-      dmg2img
-      unzip
-      coreutils
-      wget
-      #unstable.electron_6
-
-
       gnupg
       gopass
 
-      # DE / Apps
+      # DE
       gnome3.dconf
       arc-theme
       arc-icon-theme
@@ -135,70 +56,9 @@ in
       networkmanager_dmenu
       gnome3.nautilus
       gnome3.file-roller
-      peek
-      capture
       nitrogen
-      zoom
-      mpv
-      transmission_gtk
-      unstable.torbrowser
-
-      (
-        wrapChromiumApp {
-          name = "chromium";
-          app = chromium;
-        }
-      )
-
-
-
-      (
-        wrapChromiumApp {
-          name = "slack";
-          app = unstable.slack;
-        }
-      )
-
-      (
-        wrapChromiumApp {
-          name = "spotify";
-          app = spotify;
-        }
-      )
-
-      unstable.skype
-
-      unstable.firefox
-
-      (
-        makeDesktopItem {
-          name = "calendar";
-          exec = "chromium --app=https://calendar.google.com";
-          comment = "Google Calendar";
-          desktopName = "Calendar";
-        }
-      )
 
       exiftool
-      spotify
-
-      (
-        makeDesktopItem {
-          name = "Notion";
-          exec = "chromium --app=https://www.notion.so";
-          comment = "Notion";
-          desktopName = "Notion";
-        }
-      )
-
-      (
-        makeDesktopItem {
-          name = "slack";
-          exec = "slack";
-          comment = ":)";
-          desktopName = "Slack";
-        }
-      )
     ];
 
   # virtualisation.virtualbox = {
@@ -206,10 +66,6 @@ in
   #     host.enableExtensionPack = true;
   #     #host.package = pkgs.unstable.virtualbox;
   # };
-
-  virtualisation.docker = {
-    enable = true;
-  };
 
   environment.pathsToLink = [ "/share/zsh" ];
   environment.sessionVariables = {
@@ -223,46 +79,13 @@ in
     export XDG_CACHE_HOME=$HOME/.cache
   '';
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-  # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
   hardware.brightnessctl.enable = true;
 
-  # systemd.user.services.udiskie = {
-  #   enable = true;
-  #   description = "udiskie to automount media";
-  #   after =  ["graphical-session-pre.target"];
-  #   wantedBy = ["default.target"];
-  #   partOf = ["graphical-session.target"];
-  #   serviceConfig = {
-  #     Type="forking";
-  #     Restart = "always";
-  #     ExecStart = "${pkgs.udiskie}/bin/udiskie --automount --notify --no-file-manager";
-  #   };
-  # };
-
-  # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    #dpi = 210;
     layout = "us";
     xkbOptions = "eurosign:e, ctrl:nocaps";
 
@@ -340,9 +163,6 @@ in
   services.geoclue2.enable = true;
   # services.gnome3.core-shell.enable = true;
 
-  services.lorri.enable = true;
-
-
   time.timeZone = "Europe/Amsterdam";
 
   fonts.enableDefaultFonts = false;
@@ -361,18 +181,6 @@ in
     monospace = [ "Iosevka" ];
   };
 
-  # fonts.fontconfig.dpi = 210;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-
-  programs.zsh.enable = true;
-  users.users.gabor = {
-    shell = pkgs.zsh;
-    isNormalUser = true;
-    extraGroups = [ "wheel" "video" "docker" ];
-  };
-
-  nix.trustedUsers = [ "gabor" ];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
