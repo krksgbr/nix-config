@@ -5,15 +5,15 @@
 { config, pkgs, ... }:
 let
   wrapChromiumApp = { app, name }:
-     pkgs.symlinkJoin {
-       inherit name;
-       paths = [ app ];
-       buildInputs = [ pkgs.makeWrapper ];
-       postBuild = ''
-         wrapProgram $out/bin/${name} \
-           --add-flags "--force-device-scale-factor=2"
-       '';
-     };
+    pkgs.symlinkJoin {
+      inherit name;
+      paths = [ app ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/${name} \
+          --add-flags "--force-device-scale-factor=2"
+      '';
+    };
   nixosHardware = builtins.fetchGit {
     url = "https://github.com/NixOS/nixos-hardware.git";
     rev = "ed0d3cc198557b9260295aa8a384dd5080706aee";
@@ -21,7 +21,8 @@ let
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       "${nixosHardware}/lenovo/thinkpad/t490"
       ./hardware-configuration.nix
       ./cachix.nix
@@ -40,7 +41,7 @@ in
     allowUnfree = true;
   };
 
-  nixpkgs.overlays = [(import ./overlays.nix config)];
+  nixpkgs.overlays = [ (import ./overlays.nix config) ];
 
   # networking.hostName = "nixos"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -71,143 +72,156 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs;
-  [
-     # system
-     libnotify
-     udiskie
-     killall
-     brightnessctl
-     ddcutil
-     s-tui
+    [
+      # system
+      libnotify
+      udiskie
+      killall
+      brightnessctl
+      ddcutil
+      s-tui
 
-     # dev
-     gnumake
-     gcc
-     cachix
-     git
-     wget
-     tree
-     tmux
-     rofi
-     htop-vim
-     lm_sensors
-     ag
-     nix-prefetch-scripts
-     unstable.nixpkgs-fmt
-     fzy
-     docker-compose
-     (let
-       lorri = builtins.fetchGit {
-         url = "https://github.com/target/lorri.git";
-         rev = "88c680c9abf0f04f2e294436d20073ccf26f0781";
-       };
-      in
-      import lorri {}
-     )
-     haskellPackages.ormolu
-     unstable.nodePackages.node2nix
-     nodejs
-     yarn
-     stack
-     xclip
-     unstable.nodePackages.node2nix
-     kitty
-     unstable.idea.idea-community
-     vim
-     dmg2img
-     unzip
-     coreutils
-     wget
-     #unstable.electron_6
-
-
-     gnupg
-     gopass
-
-     # DE / Apps
-     gnome3.dconf
-     arc-theme
-     arc-icon-theme
-     polybar
-     compton
-     networkmanager_dmenu
-     gnome3.nautilus
-     gnome3.file-roller
-     peek
-     capture
-     nitrogen
-     zoom
-     mpv
-     transmission_gtk
-     unstable.torbrowser
-
-     (wrapChromiumApp {
-       name = "chromium";
-       app = chromium;
-     })
+      # dev
+      gnumake
+      gcc
+      cachix
+      git
+      wget
+      tree
+      tmux
+      rofi
+      htop-vim
+      lm_sensors
+      ag
+      nix-prefetch-scripts
+      unstable.nixpkgs-fmt
+      fzy
+      docker-compose
+      (
+        let
+          lorri = builtins.fetchGit {
+            url = "https://github.com/target/lorri.git";
+            rev = "88c680c9abf0f04f2e294436d20073ccf26f0781";
+          };
+        in
+          import lorri {}
+      )
+      haskellPackages.ormolu
+      unstable.nodePackages.node2nix
+      nodejs
+      yarn
+      stack
+      xclip
+      unstable.nodePackages.node2nix
+      kitty
+      unstable.idea.idea-community
+      vim
+      dmg2img
+      unzip
+      coreutils
+      wget
+      #unstable.electron_6
 
 
+      gnupg
+      gopass
 
-     (wrapChromiumApp {
-       name = "slack";
-       app = unstable.slack;
-     })
+      # DE / Apps
+      gnome3.dconf
+      arc-theme
+      arc-icon-theme
+      polybar
+      compton
+      networkmanager_dmenu
+      gnome3.nautilus
+      gnome3.file-roller
+      peek
+      capture
+      nitrogen
+      zoom
+      mpv
+      transmission_gtk
+      unstable.torbrowser
 
-     (wrapChromiumApp {
-       name = "spotify";
-       app = spotify;
-     })
+      (
+        wrapChromiumApp {
+          name = "chromium";
+          app = chromium;
+        }
+      )
 
-     unstable.skype
 
-     unstable.firefox
 
-     (makeDesktopItem {
-       name = "calendar";
-       exec = "chromium --app=https://calendar.google.com";
-       comment = "Google Calendar";
-       desktopName = "Calendar";
-     })
+      (
+        wrapChromiumApp {
+          name = "slack";
+          app = unstable.slack;
+        }
+      )
 
-     exiftool
-     spotify
+      (
+        wrapChromiumApp {
+          name = "spotify";
+          app = spotify;
+        }
+      )
 
-     (makeDesktopItem {
-       name = "Notion";
-       exec = "chromium --app=https://www.notion.so";
-       comment = "Notion";
-       desktopName = "Notion";
-     })
+      unstable.skype
 
-     (makeDesktopItem {
-       name = "slack";
-       exec = "slack";
-       comment = ":)";
-       desktopName = "Slack";
-     })
-   ];
+      unstable.firefox
 
-   # virtualisation.virtualbox = {
-   #     host.enable = true;
-   #     host.enableExtensionPack = true;
-   #     #host.package = pkgs.unstable.virtualbox;
-   # };
+      (
+        makeDesktopItem {
+          name = "calendar";
+          exec = "chromium --app=https://calendar.google.com";
+          comment = "Google Calendar";
+          desktopName = "Calendar";
+        }
+      )
 
-   virtualisation.docker = {
-     enable = true;
-   };
+      exiftool
+      spotify
 
-   environment.pathsToLink = ["/share/zsh"];
-   environment.sessionVariables = {
-     GDK_SCALE="2";
-     GDK_DPI_SCALE="0.5";
-   };
-   environment.extraInit = ''
-     # these are the defaults, but some applications need these to be set explicitly
-     export XDG_CONFIG_HOME=$HOME/.config
-     export XDG_DATA_HOME=$HOME/.local/share
-     export XDG_CACHE_HOME=$HOME/.cache
-   '';
+      (
+        makeDesktopItem {
+          name = "Notion";
+          exec = "chromium --app=https://www.notion.so";
+          comment = "Notion";
+          desktopName = "Notion";
+        }
+      )
+
+      (
+        makeDesktopItem {
+          name = "slack";
+          exec = "slack";
+          comment = ":)";
+          desktopName = "Slack";
+        }
+      )
+    ];
+
+  # virtualisation.virtualbox = {
+  #     host.enable = true;
+  #     host.enableExtensionPack = true;
+  #     #host.package = pkgs.unstable.virtualbox;
+  # };
+
+  virtualisation.docker = {
+    enable = true;
+  };
+
+  environment.pathsToLink = [ "/share/zsh" ];
+  environment.sessionVariables = {
+    GDK_SCALE = "2";
+    GDK_DPI_SCALE = "0.5";
+  };
+  environment.extraInit = ''
+    # these are the defaults, but some applications need these to be set explicitly
+    export XDG_CONFIG_HOME=$HOME/.config
+    export XDG_DATA_HOME=$HOME/.local/share
+    export XDG_CACHE_HOME=$HOME/.cache
+  '';
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -263,52 +277,52 @@ in
       enable = true;
       user = "gabor";
       extraConfig = ''
-      [greeter]
-      show-password-label = true
-      password-label-text = Pass:
-      invalid-password-text = Nope
+        [greeter]
+        show-password-label = true
+        password-label-text = Pass:
+        invalid-password-text = Nope
 
-      [greeter-hotkeys]
-      # "alt", "control" or "meta"
-      mod-key = meta
+        [greeter-hotkeys]
+        # "alt", "control" or "meta"
+        mod-key = meta
 
-      # Power management shortcuts (single-key, case-sensitive)
-      shutdown-key = s
-      restart-key = r
-      hibernate-key = h
-      suspend-key = u
+        # Power management shortcuts (single-key, case-sensitive)
+        shutdown-key = s
+        restart-key = r
+        hibernate-key = h
+        suspend-key = u
 
-      [greeter-theme]
-      # A color from X11's `rgb.txt` file, a quoted hex string(`"#rrggbb"`) or a
-      # RGB color(`rgb(r,g,b)`) are all acceptable formats.
+        [greeter-theme]
+        # A color from X11's `rgb.txt` file, a quoted hex string(`"#rrggbb"`) or a
+        # RGB color(`rgb(r,g,b)`) are all acceptable formats.
 
-      # The font to use for all text
-      font = "Iosevka"
-      # The font size to use for all text
-      font-size = 1.25em
-      # The default text color
-      text-color = "#d33682"
-      # The color of the error text
-      error-color = "#d33682"
-      # An absolute path to an optional background image.
-      # The image will be displayed centered & unscaled.
-      background-image = ""
-      # The screen's background color.
-      background-color = "#073642"
-      # The password window's background color
-      window-color = "#002b36"
-      # The color of the password window's border
-      border-color = "#002b36"
-      # The width of the password window's border.
-      # A trailing `px` is required.
-      border-width = 2px
-      # The pixels of empty space around the password input.
-      # Do not include a trailing `px`.
-      layout-space = 15
-      # The color of the text in the password input.
-      password-color = "#d33682"
-      # The background color of the password input.
-      password-background-color = "#073642"
+        # The font to use for all text
+        font = "Iosevka"
+        # The font size to use for all text
+        font-size = 1.25em
+        # The default text color
+        text-color = "#d33682"
+        # The color of the error text
+        error-color = "#d33682"
+        # An absolute path to an optional background image.
+        # The image will be displayed centered & unscaled.
+        background-image = ""
+        # The screen's background color.
+        background-color = "#073642"
+        # The password window's background color
+        window-color = "#002b36"
+        # The color of the password window's border
+        border-color = "#002b36"
+        # The width of the password window's border.
+        # A trailing `px` is required.
+        border-width = 2px
+        # The pixels of empty space around the password input.
+        # Do not include a trailing `px`.
+        layout-space = 15
+        # The color of the text in the password input.
+        password-color = "#d33682"
+        # The background color of the password input.
+        password-background-color = "#073642"
       '';
     };
 
@@ -332,18 +346,19 @@ in
   time.timeZone = "Europe/Amsterdam";
 
   fonts.enableDefaultFonts = false;
+
   fonts.fonts = with pkgs; [
-     liberation_ttf_v2
-     iosevka
-     joypixels
-     ibm-plex
+    liberation_ttf_v2
+    iosevka
+    joypixels
+    ibm-plex
   ];
 
   fonts.fontconfig.defaultFonts = {
-    emoji = ["JoyPixels"];
-    sansSerif = ["IBM Plex Sans"];
-    serif = ["IBM Plex Serif"];
-    monospace = ["Iosevka"];
+    emoji = [ "JoyPixels" ];
+    sansSerif = [ "IBM Plex Sans" ];
+    serif = [ "IBM Plex Serif" ];
+    monospace = [ "Iosevka" ];
   };
 
   # fonts.fontconfig.dpi = 210;
