@@ -339,7 +339,6 @@ in
      ibm-plex
   ];
 
-  fonts.enableDefaultFonts = false;
   fonts.fontconfig.defaultFonts = {
     emoji = ["JoyPixels"];
     sansSerif = ["IBM Plex Sans"];
