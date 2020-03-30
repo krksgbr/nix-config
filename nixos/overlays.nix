@@ -21,6 +21,11 @@ in
     patches = (oldAttrs.patches or []) ++ [./networkmanager-dmenu.patch];
   });
 
+  lorri = import (builtins.fetchTarball {
+    url = "https://github.com/target/lorri/archive/88c680c9abf0f04f2e294436d20073ccf26f0781.tar.gz";
+    sha256 = "1415mhdr0pwvshs04clfz1ys76r5qf9jz8jchm63l6llaj6m7mrv";
+  }) {};
+
   inherit unstable;
 
   haskell =

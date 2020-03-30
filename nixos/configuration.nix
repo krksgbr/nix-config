@@ -14,16 +14,22 @@ let
            --add-flags "--force-device-scale-factor=2"
        '';
      };
+  nixosHardware = builtins.fetchGit {
+    url = "https://github.com/NixOS/nixos-hardware.git";
+    rev = "ed0d3cc198557b9260295aa8a384dd5080706aee";
+  };
 in
 {
   imports =
     [ # Include the results of the hardware scan.
-      <nixos-hardware/lenovo/thinkpad/t490>
+      "${nixosHardware}/lenovo/thinkpad/t490"
       ./hardware-configuration.nix
       ./cachix.nix
       ./yubikey.nix
       ./ddcutil.nix
     ];
+
+
 
 
   # Use the systemd-boot EFI boot loader.
@@ -40,6 +46,9 @@ in
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   networking.networkmanager.enable = true;
+  networking.networkmanager.insertNameservers = [
+    "8.8.8.8"
+  ];
   # networking.wireless.iwd.enable = true;
   # networking.networkmanager.extraConfig = ''
   # [device]
@@ -69,9 +78,11 @@ in
      killall
      brightnessctl
      ddcutil
+     s-tui
 
      # dev
      gnumake
+     gcc
      cachix
      git
      wget
@@ -95,13 +106,11 @@ in
      )
      haskellPackages.ormolu
      unstable.nodePackages.node2nix
-     unstable.electron # TODO update glyphcollector and get rid of this
      nodejs
      yarn
      stack
-
      xclip
-
+     unstable.nodePackages.node2nix
      kitty
      unstable.idea.idea-community
      vim
@@ -109,7 +118,7 @@ in
      unzip
      coreutils
      wget
-     unstable.nix
+     #unstable.electron_6
 
 
      gnupg
@@ -125,19 +134,31 @@ in
      gnome3.nautilus
      gnome3.file-roller
      peek
+     capture
      nitrogen
      zoom
      mpv
+     transmission_gtk
+     unstable.torbrowser
 
      (wrapChromiumApp {
        name = "chromium";
        app = chromium;
      })
 
+
+
      (wrapChromiumApp {
        name = "slack";
        app = unstable.slack;
      })
+
+     (wrapChromiumApp {
+       name = "spotify";
+       app = spotify;
+     })
+
+     unstable.skype
 
      unstable.firefox
 
@@ -150,12 +171,30 @@ in
 
      exiftool
      spotify
+
+     (makeDesktopItem {
+       name = "Notion";
+       exec = "chromium --app=https://www.notion.so";
+       comment = "Notion";
+       desktopName = "Notion";
+     })
+
+     (makeDesktopItem {
+       name = "slack";
+       exec = "slack";
+       comment = ":)";
+       desktopName = "Slack";
+     })
    ];
 
-   virtualisation.virtualbox = {
-       host.enable = true;
-       host.enableExtensionPack = true;
-       #host.package = pkgs.unstable.virtualbox;
+   # virtualisation.virtualbox = {
+   #     host.enable = true;
+   #     host.enableExtensionPack = true;
+   #     #host.package = pkgs.unstable.virtualbox;
+   # };
+
+   virtualisation.docker = {
+     enable = true;
    };
 
    environment.pathsToLink = ["/share/zsh"];
@@ -164,8 +203,7 @@ in
      GDK_DPI_SCALE="0.5";
    };
    environment.extraInit = ''
-     # these are the defaults, but some applications are buggy so we set them
-     # here anyway
+     # these are the defaults, but some applications need these to be set explicitly
      export XDG_CONFIG_HOME=$HOME/.config
      export XDG_DATA_HOME=$HOME/.local/share
      export XDG_CACHE_HOME=$HOME/.cache
@@ -179,13 +217,13 @@ in
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -212,7 +250,7 @@ in
     enable = true;
     #dpi = 210;
     layout = "us";
-    xkbOptions = "eurosign:e, ctrl:swapcaps";
+    xkbOptions = "eurosign:e, ctrl:nocaps";
 
     # Enable touchpad support.
     libinput.enable = true;
@@ -284,9 +322,17 @@ in
   i18n.consoleUseXkbConfig = true;
 
   services.localtime.enable = true;
+  services.avahi.enable = true;
+  services.geoclue2.enable = true;
+  # services.gnome3.core-shell.enable = true;
+
+  services.lorri.enable = true;
+
+
   time.timeZone = "Europe/Amsterdam";
 
-  fonts.fonts = with pkgs; [ 
+  fonts.enableDefaultFonts = false;
+  fonts.fonts = with pkgs; [
      liberation_ttf_v2
      iosevka
      joypixels
@@ -309,7 +355,7 @@ in
   users.users.gabor = {
     shell = pkgs.zsh;
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "docker"];
+    extraGroups = [ "wheel" "video" "docker" ];
   };
 
   virtualisation.docker.enable = true;
@@ -318,6 +364,10 @@ in
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "19.09"; # Did you read the comment?
+  system.stateVersion = "19.03"; # Did you read the comment?
+
+  nix.extraOptions = ''
+    tarball-ttl = 100000
+  '';
 
 }
