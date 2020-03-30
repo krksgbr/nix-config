@@ -357,7 +357,7 @@ in
     extraGroups = [ "wheel" "video" "docker" ];
   };
 
-  virtualisation.docker.enable = true;
+  nix.trustedUsers = [ "gabor" ];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
