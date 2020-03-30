@@ -290,9 +290,16 @@ in
      liberation_ttf_v2
      iosevka
      joypixels
+     ibm-plex
   ];
+
   fonts.enableDefaultFonts = false;
-  fonts.fontconfig.defaultFonts.emoji = ["JoyPixels"];
+  fonts.fontconfig.defaultFonts = {
+    emoji = ["JoyPixels"];
+    sansSerif = ["IBM Plex Sans"];
+    serif = ["IBM Plex Serif"];
+    monospace = ["Iosevka"];
+  };
 
   # fonts.fontconfig.dpi = 210;
 
