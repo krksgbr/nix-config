@@ -29,6 +29,7 @@ in
       lorri
       nix-prefetch-scripts
       nodejs
+      ripgrep
       rofi
       stack
       tmux
