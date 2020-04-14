@@ -15,6 +15,7 @@ in
     [
       ag
       cachix
+      cabal-install
       coreutils
       dmg2img
       docker-compose
