@@ -14,6 +14,17 @@ in
     ./compton.nix
   ];
 
+  nixpkgs.overlays = [
+    (
+      import (
+        builtins.fetchGit {
+          url = "https://github.com/nix-community/emacs-overlay";
+          rev = "7b8f58785051e2dd729c9a3a6398920e86c24c13"; # 2020-04-14
+        }
+      )
+    )
+  ];
+
   home.packages = with pkgs; []
     ++ (
          builtins.attrValues (
@@ -60,6 +71,7 @@ in
 
   programs.emacs = {
     enable = true;
+    package = pkgs.emacsUnstable;
   };
 
   programs.zathura = {
