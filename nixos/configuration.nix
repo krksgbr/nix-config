@@ -84,6 +84,7 @@ in
   hardware.pulseaudio.enable = true;
   hardware.brightnessctl.enable = true;
 
+  programs.dconf.enable = true;
   services.xserver = {
     enable = true;
     layout = "us";
