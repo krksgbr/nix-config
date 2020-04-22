@@ -26,14 +26,14 @@ in
   ];
 
   home.packages = with pkgs; []
-    ++ (
-         builtins.attrValues (
-           import ./node-pkgs {
-             inherit pkgs;
-             inherit nodejs;
-           }
-         )
-       );
+  ++ (
+    builtins.attrValues (
+      import ./node-pkgs {
+        inherit pkgs;
+        inherit nodejs;
+      }
+    )
+  );
 
   home.file =
     let
