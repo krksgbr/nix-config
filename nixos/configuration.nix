@@ -59,6 +59,7 @@ in
       nitrogen
 
       exiftool
+      jmtpfs # for android file transfer
     ];
 
   # virtualisation.virtualbox = {
