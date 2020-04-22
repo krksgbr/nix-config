@@ -8,3 +8,7 @@
 ;;  :recipe (:fetcher github
 ;;           :repo "hlissner/emacs-snippets"
 ;;           :files ("*")))
+
+
+(package! exec-path-from-shell)
+(package! prettier-js)

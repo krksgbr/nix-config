@@ -13,11 +13,6 @@
       org-bullets-bullet-list '(">")
       )
 
-(add-to-list 'custom-theme-load-path
-             (expand-file-name "~/git/emacs-doom-themes/themes"))
-
-(def-package! doom-themes :load-path "~/git/emacs-doom-themes")
-
 (defun g/doom-customize-faces()
   (message "running g/doom-customize-faces")
 	 (doom-themes-set-faces

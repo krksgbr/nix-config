@@ -179,12 +179,4 @@
        ;; customizations and extensions of existing features
        workspace
        theme
-       org
-
-       :g
-       ;; additional stuff that is not included in doom
-       exec-path-from-shell
-       prettier
-       tide
-       ;; web
-       graphql)
+       org)

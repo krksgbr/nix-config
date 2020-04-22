@@ -38,5 +38,8 @@
 (set-formatter! 'ormolu "ormolu" :modes '(haskell-mode))
 (set-formatter! 'nixpkgs-fmt "nixpkgs-fmt" :modes '(nix-mode))
 
+(use-package! exec-path-from-shell)
+(use-package! prettier-js)
+
 (provide 'config)
 ;;; config.el ends here

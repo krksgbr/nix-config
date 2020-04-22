@@ -1,6 +1,6 @@
 ;;; custom/workspace/init.el -*- lexical-binding: t; -*-
 
-(def-package-hook! persp-mode
+(use-package-hook! persp-mode
   ;; stay in same perspective when creating new frame
   :post-config
   (setq persp-interactive-init-frame-behaviour-override nil
