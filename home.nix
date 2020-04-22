@@ -68,6 +68,16 @@ in
     config.keybindings = {};
   };
 
+  xsession.pointerCursor = {
+    package = pkgs.vanilla-dmz;
+    name = "Vanilla-DMZ-AA";
+    size = 128;
+  };
+
+  xresources.extraConfig = ''
+    Xft.dpi: 210
+  '';
+
 
   programs.emacs = {
     enable = true;
