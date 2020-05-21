@@ -9,6 +9,10 @@ let
     in
       import lorri_ {}
   );
+
+  idea_launcher = pkgs.writeShellScriptBin "dea" ''
+  idea-community $1 > /dev/null 2>&1 & disown;
+  '';
 in
 {
   environment.systemPackages = with pkgs;
@@ -35,6 +39,7 @@ in
       tmux
       tree
       unstable.idea.idea-community
+      idea_launcher
       unstable.nixpkgs-fmt
       unstable.nodePackages.node2nix
       unzip
