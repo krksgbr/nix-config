@@ -61,7 +61,7 @@ function halure(){
 
 
 function ema(){
-    xrandr  --output DP-1 --left-of eDP-1 --auto
+    xrandr  --output DP-1 --right-of eDP-1 --auto
     # scaling degrades performance
     # TODO find a workaround for this
     # xrandr --output DP-1 --mode 3840x2160 --right-of eDP-1 --scale 0.75x0.75 --rate 25.00
