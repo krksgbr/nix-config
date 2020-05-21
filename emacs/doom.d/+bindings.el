@@ -15,7 +15,7 @@
    ;; C-u is used by evil
 
    (:desc "search" :prefix "/"
-     :desc "Project Files"         :n  "p" #'counsel-projectile-ag
+     :desc "Project Files"         :n  "p" #'counsel-projectile-rg
      :desc "Swiper"                :nv "/" #'swiper)
 
    (:desc "buffer" :prefix "b"
