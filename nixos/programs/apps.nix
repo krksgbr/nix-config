@@ -19,7 +19,7 @@ in
     peek
     transmission_gtk
     unstable.firefox
-    unstable.skype
+    # unstable.skype
     unstable.torbrowser
     zoom
 
