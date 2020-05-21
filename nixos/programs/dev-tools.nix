@@ -26,6 +26,7 @@ in
       fzy
       gcc
       git
+      (import ./dev-tools/git-recent.nix { inherit pkgs; })
       gnumake
       haskellPackages.ormolu
       htop-vim
