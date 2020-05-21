@@ -23,6 +23,8 @@ in
       coreutils
       dmg2img
       docker-compose
+      unstable.elmPackages.elm
+      unstable.elmPackages.elm-format
       fzy
       gcc
       git
