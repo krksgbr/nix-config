@@ -20,6 +20,7 @@ in
       ./peripherals/ddcutil.nix
       ./peripherals/udiskie.nix
       ./peripherals/yubikey.nix
+      ./peripherals/android.nix
       ./programs/apps.nix
       ./programs/dev-tools.nix
       ./users.nix
@@ -59,7 +60,6 @@ in
       nitrogen
 
       exiftool
-      jmtpfs # for android file transfer
     ];
 
   # virtualisation.virtualbox = {
@@ -161,7 +161,6 @@ in
   i18n.consoleUseXkbConfig = true;
 
   services.localtime.enable = true;
-  services.avahi.enable = true;
   services.geoclue2.enable = true;
   # services.gnome3.core-shell.enable = true;
 
