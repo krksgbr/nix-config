@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 {
-  services.compton = {
+  services.picom = {
     enable = true;
     backend = "glx";
-    vSync = "opengl-swc";
+    vSync = true;
     extraOptions = ''
       paint-on-overlay = true;
     '';

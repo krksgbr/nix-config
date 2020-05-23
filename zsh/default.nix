@@ -21,6 +21,7 @@ in
     initExtra =
       let
         PATH = builtins.concatStringsSep ":" [
+          "$HOME/bin"
           "$HOME/.emacs.d/bin"
           "$HOME/.yarn/bin"
         ];

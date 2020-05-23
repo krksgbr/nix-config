@@ -83,7 +83,6 @@ in
   services.openssh.enable = true;
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-  hardware.brightnessctl.enable = true;
 
   programs.dconf.enable = true;
   services.xserver = {
@@ -158,7 +157,7 @@ in
   # This will apply the X keymap to the console keymap,
   # which affects virtual consoles such as tty
   # https://unix.stackexchange.com/questions/377600/in-nixos-how-to-remap-caps-lock-to-control
-  i18n.consoleUseXkbConfig = true;
+  console.useXkbConfig = true;
 
   services.localtime.enable = true;
   services.geoclue2.enable = true;
@@ -187,7 +186,7 @@ in
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "19.03"; # Did you read the comment?
+  system.stateVersion = "20.03"; # Did you read the comment?
 
   nix.extraOptions = ''
     tarball-ttl = 100000
