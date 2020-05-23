@@ -10,4 +10,8 @@
     rofi.fullscreen: true
     '';
   };
+  home.packages = [
+      (pkgs.mkScript "rofi-logout" ./rofi-logout)
+      (pkgs.mkScript "rofi-kbd-layout" ./rofi-kbd-layout)
+  ];
 }

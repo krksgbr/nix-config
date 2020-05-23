@@ -7,11 +7,11 @@ let
         rev = "88c680c9abf0f04f2e294436d20073ccf26f0781";
       };
     in
-      import lorri_ {}
+    import lorri_ { }
   );
 
   idea_launcher = pkgs.writeShellScriptBin "dea" ''
-  idea-community $1 > /dev/null 2>&1 & disown;
+    idea-community $1 > /dev/null 2>&1 & disown;
   '';
 in
 {
@@ -28,7 +28,7 @@ in
       fzy
       gcc
       git
-      (import ./dev-tools/git-recent.nix { inherit pkgs; })
+      (pkgs.mkScript "git-recent" ./dev-tools/git-recent)
       gnumake
       haskellPackages.ormolu
       htop-vim

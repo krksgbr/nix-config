@@ -23,10 +23,11 @@ in
         }
       )
     )
+    (import ./nixos/overlays.nix config)
   ];
 
-  home.packages = with pkgs; []
-  ++ (
+  home.packages = with pkgs; [ ]
+    ++ (
     builtins.attrValues (
       import ./node-pkgs {
         inherit pkgs;
@@ -37,35 +38,35 @@ in
 
   home.file =
     let
-      emacs = import ./emacs {};
+      emacs = import ./emacs { };
     in
-      {
-        ".vimrc".source = ./dot/vimrc;
-        # ".vim/autoload/plug.vim".source = fetchurl {
-        #    url = "https://raw.githubusercontent.com/junegunn/vim-plug/ebd534c88bfd49f8d3c758d96ad04ce3f77ee6f8/plug.vim";
-        #    sha256 = "1yd9dbbrkybgplnw96390g2d0w0wcl4amd2kjhxrqvnjricggzvj";
-        # };
-        ".config/compton.conf".source = ./compton.conf;
-        "bin/rofi-logout".source = ./rofi/rofi-logout; # expected by i3
-        "bin/rofi-kbd-layout".source = ./rofi/rofi-kbd-layout; # expected by i3
-        # ".config/i3".source = ./i3;
-        ".config/polybar".source = ./polybar;
-        ".config/kitty".source = ./kitty;
-        ".config/gtk-3.0".source = ./gtk-3.0;
-        ".config/networkmanager-dmenu".source = ./networkmanager-dmenu;
-        ".local/share/fonts".source = import ./fonts { inherit pkgs; };
-        #".emacs.d".source = emacs.emacs-d;
-        # ".doom.d".source = emacs.doom-d;
-        ".ideavimrc".source = ./dot/ideavimrc;
-      };
+    {
+      ".vimrc".source = ./dot/vimrc;
+      # ".vim/autoload/plug.vim".source = fetchurl {
+      #    url = "https://raw.githubusercontent.com/junegunn/vim-plug/ebd534c88bfd49f8d3c758d96ad04ce3f77ee6f8/plug.vim";
+      #    sha256 = "1yd9dbbrkybgplnw96390g2d0w0wcl4amd2kjhxrqvnjricggzvj";
+      # };
+      ".config/compton.conf".source = ./compton.conf;
+      "bin/rofi-logout".source = ./rofi/rofi-logout; # expected by i3
+      "bin/rofi-kbd-layout".source = ./rofi/rofi-kbd-layout; # expected by i3
+      # ".config/i3".source = ./i3;
+      ".config/polybar".source = ./polybar;
+      ".config/kitty".source = ./kitty;
+      ".config/gtk-3.0".source = ./gtk-3.0;
+      ".config/networkmanager-dmenu".source = ./networkmanager-dmenu;
+      ".local/share/fonts".source = import ./fonts { inherit pkgs; };
+      #".emacs.d".source = emacs.emacs-d;
+      # ".doom.d".source = emacs.doom-d;
+      ".ideavimrc".source = ./dot/ideavimrc;
+    };
 
   xsession.enable = true;
   xsession.windowManager.i3 = {
     enable = true;
     extraConfig = builtins.readFile ./i3/config;
-    config.bars = [];
+    config.bars = [ ];
     config.modifier = "Mod4";
-    config.keybindings = {};
+    config.keybindings = { };
   };
 
   xsession.pointerCursor = {
@@ -169,6 +170,6 @@ in
     enableZshIntegration = true;
   };
 
-  services.udiskie.enable = true ;
+  services.udiskie.enable = true;
 
 }
