@@ -21,7 +21,7 @@ in
     unstable.firefox
     # unstable.skype
     unstable.torbrowser
-    zoom
+    zoom-us
 
     (
       wrapChromiumApp {
