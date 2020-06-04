@@ -85,6 +85,12 @@ in
   hardware.pulseaudio.enable = true;
 
   programs.dconf.enable = true;
+
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "curses";
+  };
+
   services.xserver = {
     enable = true;
     layout = "us";
