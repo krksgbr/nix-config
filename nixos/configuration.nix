@@ -33,6 +33,9 @@ in
 
   nixpkgs.config = {
     allowUnfree = true;
+    permittedInsecurePackages = [
+      "openssl-1.0.2u"
+    ];
   };
 
   nixpkgs.overlays = [ (import ./overlays.nix config) ];
