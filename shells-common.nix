@@ -3,7 +3,7 @@
     nrs = "sudo nixos-rebuild switch";
     hrs = "home-manager switch";
     idea = "idea-community";
-    conf = "emacs ~/.config/nixpkgs & disown";
+    conf = "emacs ~/nix-config & disown";
     ls = "ls --color=auto";
     grep = "grep --color=always";
     halup = "ssh -t gbr@ssh.krks.info '~/halu.space/exec_pms.sh'";
