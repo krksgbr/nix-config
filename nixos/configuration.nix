@@ -52,17 +52,12 @@ in
       gopass
 
       # DE
-      gnome3.dconf
-      arc-theme
-      arc-icon-theme
       polybar
       compton
       networkmanager_dmenu
-      gnome3.nautilus
-      gnome3.file-roller
       nitrogen
-
       exiftool
+      kde-gtk-config
     ];
 
   # virtualisation.virtualbox = {
@@ -76,6 +71,7 @@ in
     GDK_SCALE = "2";
     GDK_DPI_SCALE = "0.5";
   };
+
   environment.extraInit = ''
     # these are the defaults, but some applications need these to be set explicitly
     export XDG_CONFIG_HOME=$HOME/.config
@@ -87,81 +83,25 @@ in
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  programs.dconf.enable = true;
-
   programs.gnupg.agent = {
     enable = true;
     pinentryFlavor = "curses";
   };
 
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    xkbOptions = "eurosign:e, ctrl:nocaps";
+   services.xserver = {
+     enable = true;
+     layout = "us";
+     xkbOptions = "eurosign:e, ctrl:nocaps";
 
-    # Enable touchpad support.
-    libinput.enable = true;
-    libinput.naturalScrolling = true;
-    libinput.accelSpeed = "1.0";
+     # Enable touchpad support.
+     libinput.enable = true;
+     libinput.naturalScrolling = true;
+     libinput.accelSpeed = "1.0";
 
-    # Configure window/desktop manager
-    displayManager.lightdm.enable = true;
-    displayManager.lightdm.greeters.mini = {
-      enable = true;
-      user = "gabor";
-      extraConfig = ''
-        [greeter]
-        show-password-label = true
-        password-label-text = Pass:
-        invalid-password-text = Nope
-
-        [greeter-hotkeys]
-        # "alt", "control" or "meta"
-        mod-key = meta
-
-        # Power management shortcuts (single-key, case-sensitive)
-        shutdown-key = s
-        restart-key = r
-        hibernate-key = h
-        suspend-key = u
-
-        [greeter-theme]
-        # A color from X11's `rgb.txt` file, a quoted hex string(`"#rrggbb"`) or a
-        # RGB color(`rgb(r,g,b)`) are all acceptable formats.
-
-        # The font to use for all text
-        font = "Iosevka"
-        # The font size to use for all text
-        font-size = 1.25em
-        # The default text color
-        text-color = "#d33682"
-        # The color of the error text
-        error-color = "#d33682"
-        # An absolute path to an optional background image.
-        # The image will be displayed centered & unscaled.
-        background-image = ""
-        # The screen's background color.
-        background-color = "#073642"
-        # The password window's background color
-        window-color = "#002b36"
-        # The color of the password window's border
-        border-color = "#002b36"
-        # The width of the password window's border.
-        # A trailing `px` is required.
-        border-width = 2px
-        # The pixels of empty space around the password input.
-        # Do not include a trailing `px`.
-        layout-space = 15
-        # The color of the text in the password input.
-        password-color = "#d33682"
-        # The background color of the password input.
-        password-background-color = "#073642"
-      '';
-    };
-
-    desktopManager.xterm.enable = false;
-    windowManager.i3.enable = true;
-  };
+     desktopManager.plasma5.enable = true;
+     displayManager.sddm.enable = true;
+     desktopManager.xterm.enable = false;
+   };
 
   # This will apply the X keymap to the console keymap,
   # which affects virtual consoles such as tty
@@ -170,7 +110,6 @@ in
 
   services.localtime.enable = true;
   services.geoclue2.enable = true;
-  # services.gnome3.core-shell.enable = true;
 
   time.timeZone = "Europe/Amsterdam";
 
