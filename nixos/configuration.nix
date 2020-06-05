@@ -88,20 +88,20 @@ in
     pinentryFlavor = "curses";
   };
 
-   services.xserver = {
-     enable = true;
-     layout = "us";
-     xkbOptions = "eurosign:e, ctrl:nocaps";
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    xkbOptions = "eurosign:e, ctrl:nocaps";
 
-     # Enable touchpad support.
-     libinput.enable = true;
-     libinput.naturalScrolling = true;
-     libinput.accelSpeed = "1.0";
+    # Enable touchpad support.
+    libinput.enable = true;
+    libinput.naturalScrolling = true;
+    libinput.accelSpeed = "1.0";
 
-     desktopManager.plasma5.enable = true;
-     displayManager.sddm.enable = true;
-     desktopManager.xterm.enable = false;
-   };
+    desktopManager.plasma5.enable = true;
+    displayManager.sddm.enable = true;
+    desktopManager.xterm.enable = false;
+  };
 
   # This will apply the X keymap to the console keymap,
   # which affects virtual consoles such as tty
@@ -135,6 +135,4 @@ in
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "20.03"; # Did you read the comment?
-
-
 }
