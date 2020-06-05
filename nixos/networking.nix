@@ -10,7 +10,6 @@
   networking.interfaces.enp0s31f6.useDHCP = true;
   networking.interfaces.wlp0s20f3.useDHCP = true;
 
-  networking.firewall.enable = false;
   networking.networkmanager.enable = true;
   networking.networkmanager.insertNameservers = [
     "8.8.8.8"
