@@ -55,6 +55,6 @@ in
   programs.zsh.enable = true;
   services.lorri.enable = true;
   virtualisation.docker = {
-    enable = true;
+    enable = false;
   };
 }
