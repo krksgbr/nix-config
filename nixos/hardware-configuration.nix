@@ -14,7 +14,7 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/106ed43a-df89-4a97-9106-91bedf2ad762";
+    { device = "/dev/disk/by-uuid/d380c9e7-718e-4b5e-8150-4bd2d62d375c";
       fsType = "ext4";
     };
 
@@ -22,4 +22,6 @@
 
   nix.maxJobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  # High-DPI console
+  console.font = lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
 }
