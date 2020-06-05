@@ -10,7 +10,7 @@ in
     ./zsh
     ./rofi
     ./redshift
-    ./dunst
+    ./notifications
     ./compton.nix
   ];
 
