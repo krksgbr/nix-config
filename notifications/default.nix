@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       global = {
-        font = "Iosevka Term 11";
+        font = "Iosevka Term 10";
 
         # Allow a small subset of html markup:
         #   <b>bold</b>
@@ -27,7 +27,7 @@
         #   %I  iconname (without its path)
         #   %p  progress value if set ([  0%] to [100%]) or nothing
         # Markup is allowed
-        format = "<b>%s</b>\n%b";
+        format = "<b>%s</b>\\n%b";
 
         # Sort messages by urgency.
         sort = "no";
@@ -37,7 +37,7 @@
 
         # Alignment of message text.
         # Possible values are "left", "center" and "right".
-        alignment = "center";
+        alignment = "left";
 
         # The frequency with wich text that is longer than the notification
         # window allows bounces back and forth.
@@ -75,11 +75,11 @@
         # The width can be negative.  In this case the actual width is the
         # screen width minus the width defined in within the geometry option.
         #geometry = ""250x50-40+40"";
-        geometry = "300x50-15+49";
+        geometry = "500x50-30+50";
 
         # Shrink window if it's smaller than the width.  Will be ignored if
         # width is 0.
-        shrink = "no";
+        shrink = "yes";
 
         # The transparency of the window.  Range: [0; 100].
         # This option will only work if a compositing windowmanager is
@@ -139,7 +139,7 @@
         #  * foreground: use the same color as the foreground;
         #  * frame: use the same color as the frame;
         #  * anything else will be interpreted as a X color.
-        separator_color = "frame";
+        separator_color = "foreground";
 
         # Print a notification on startup.
         # This is mainly for error detection, since dbus (re-)starts dunst
@@ -186,23 +186,23 @@
         # };
 
         urgency_low = {
-          frame_color = "#3B7C87";
-          foreground = "#3B7C87";
-          background = "#000000";
+          frame_color = "#268bd2";
+          foreground = "#000000";
+          background = "#268bd2";
           timeout = 4;
         };
 
         urgency_normal = {
-          frame_color = "#5B8234";
-          foreground = "#5B8234";
-          background = "#000000";
+          frame_color = "#2aa198";
+          foreground = "#000000";
+          background = "#2aa198";
           timeout = 10;
         };
 
         urgency_critical = {
-          frame_color = "#B7472A";
-          foreground = "#B7472A";
-          background = "#000000";
+          frame_color = "#dc322f";
+          foreground = "#000000";
+          background = "#dc322f";
           timeout = 8;
         };
 
