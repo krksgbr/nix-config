@@ -36,6 +36,7 @@ in
       lorri
       nix-prefetch-scripts
       nodejs
+      ncdu
       ripgrep
       rofi
       stack
