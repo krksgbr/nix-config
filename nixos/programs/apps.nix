@@ -20,7 +20,6 @@ in
     transmission_gtk
     unstable.firefox
     # unstable.skype
-    unstable.torbrowser
     zoom-us
 
     (
