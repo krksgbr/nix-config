@@ -96,6 +96,9 @@ bindsym $mod+Shift+l move right
 # enter fullscreen mode for the focused container
 bindsym $mod+Shift+f fullscreen toggle
 
+# screenshot
+bindsym Ctrl+Shift+3 exec --no-startup-id flameshot gui
+
 # change container layout (stacked, tabbed, toggle split)
 
 set $mode_layout Layout: (1) stacking, (2) tabbed, 3 (toggle-split)
