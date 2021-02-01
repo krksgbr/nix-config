@@ -45,7 +45,6 @@ in
       ".config/compton.conf".source = ./compton.conf;
       "bin/rofi-logout".source = ./rofi/rofi-logout; # expected by i3
       "bin/rofi-kbd-layout".source = ./rofi/rofi-kbd-layout; # expected by i3
-      ".config/polybar".source = ./polybar;
       ".config/kitty".source = ./kitty;
       #".config/gtk-3.0".source = ./gtk-3.0;
       ".config/networkmanager-dmenu".source = ./networkmanager-dmenu;
@@ -60,6 +59,18 @@ in
     config.bars = [ ];
     config.modifier = "Mod4";
     config.keybindings = { };
+  };
+
+  services.polybar = {
+    enable = true;
+    package = pkgs.polybar.override {
+      i3Support = true;
+      alsaSupport = true;
+      pulseSupport = true;
+      nlSupport = true;
+    };
+    config = ./polybar/config;
+    script = "polybar default &";
   };
 
   xsession.pointerCursor = {
