@@ -265,7 +265,6 @@ screenchange-reload = true
 margin-top = 0
 margin-bottom = 0
 
-vim:ft=dosini
 
 
 [module/battery]
@@ -362,3 +361,5 @@ font-0 = Iosevka:pixelsize=20;2
 modules-left = i3
 modules-center =
 modules-right =
+
+; vim:ft=dosini
