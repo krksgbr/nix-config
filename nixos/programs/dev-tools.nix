@@ -18,6 +18,7 @@ in
   environment.systemPackages = with pkgs;
     [
       ag
+      binutils
       cachix
       cabal-install
       coreutils
@@ -25,18 +26,21 @@ in
       docker-compose
       unstable.elmPackages.elm
       unstable.elmPackages.elm-format
+      ffmpeg
       fzy
       gcc
       git
       (pkgs.mkScript "git-recent" ./dev-tools/git-recent)
       gnumake
       haskellPackages.ormolu
+      html-tidy
       htop-vim
       kitty
       lorri
       nix-prefetch-scripts
       nodejs
       ncdu
+      python3
       ripgrep
       rofi
       stack
@@ -55,7 +59,10 @@ in
 
   programs.zsh.enable = true;
   services.lorri.enable = true;
-  virtualisation.docker = {
-    enable = false;
+
+  virtualisation = {
+    docker.enable = true;
+    virtualbox.host.enable = true;
+    libvirtd.enable = true;
   };
 }
