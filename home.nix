@@ -17,8 +17,10 @@ in
 
   nixpkgs.overlays = import ./nixos/overlays.nix config;
 
-  home.packages = with pkgs; [ ]
-    ++ (
+  home.packages = with pkgs; [
+    (mkScript "torrents" ./deluge.sh)
+  ]
+  ++ (
     builtins.attrValues (
       import ./node-pkgs {
         inherit pkgs;
