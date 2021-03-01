@@ -60,6 +60,14 @@ in
         desktopName = "Notion";
       }
     )
+    (
+      makeDesktopItem {
+        name = "Tidal";
+        exec = "chromium --app=https://tidal.com";
+        comment = "Music Streaming";
+        desktopName = "Tidal";
+      }
+    )
 
   ];
 }
