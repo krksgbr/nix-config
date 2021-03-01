@@ -60,6 +60,7 @@
        (dired +ranger)             ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
        vc                ; version-control and Emacs, sitting in a tree
+       undo
 
        :term
        ;;eshell            ; a consistent, cross-platform shell (WIP)
@@ -105,7 +106,7 @@
        data              ; config/data formats
        ;;erlang            ; an elegant language for a more civilized age
        ;;elixir            ; erlang done right
-       elm               ; care for a cup of TEA?
+       (elm +lsp)               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;;ess               ; emacs speaks statistics
        ;;fsharp           ; ML stands for Microsoft's Language
@@ -123,7 +124,7 @@
        markdown          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        nix               ; I hereby declare "nix geht mehr!"
-       ;;ocaml             ; an objective camel
+       (ocaml +lsp)             ; an objective camel
        (org              ; organize your plain life in plain text
         +dragndrop       ; file drag & drop support
         +ipython         ; ipython support for babel
