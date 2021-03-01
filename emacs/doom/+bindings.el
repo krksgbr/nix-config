@@ -14,9 +14,9 @@
    :desc "Switch to last buffer"   :n "SPC" #'evil-switch-to-windows-last-buffer ;; this should only switch within a project
    ;; C-u is used by evil
 
-   (:desc "search" :prefix "/"
-     :desc "Project Files"         :n  "p" #'counsel-projectile-rg
-     :desc "Swiper"                :nv "/" #'swiper)
+   ;;(:desc "search" :prefix "/"
+   ;;  :desc "Project Files"         :n  "p" #'+ivy/project-search
+   ;;  :desc "Swiper"                :nv "/" #'swiper)
 
    (:desc "buffer" :prefix "b"
      :desc "New empty buffer"        :n "n" #'evil-buffer-new
