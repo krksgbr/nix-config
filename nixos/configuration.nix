@@ -63,6 +63,8 @@ in
     pinentryFlavor = "curses";
   };
 
+  location.longitude = 4.3007;
+  location.latitude = 52.0705;
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
