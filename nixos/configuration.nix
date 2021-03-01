@@ -18,6 +18,7 @@ in
       ./desktop-environment.nix
       ./hardware-configuration.nix
       ./networking.nix
+      ./peripherals/bluetooth.nix
       ./peripherals/ddcutil.nix
       ./peripherals/udiskie.nix
       ./peripherals/yubikey.nix
