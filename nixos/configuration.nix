@@ -18,11 +18,11 @@ in
       ./desktop-environment.nix
       ./hardware-configuration.nix
       ./networking.nix
+      ./peripherals/android.nix
       ./peripherals/bluetooth.nix
       ./peripherals/ddcutil.nix
       ./peripherals/udiskie.nix
       ./peripherals/yubikey.nix
-      ./peripherals/android.nix
       ./programs/apps.nix
       ./programs/dev-tools.nix
       ./users.nix
@@ -55,13 +55,6 @@ in
 
       exiftool
     ];
-
-  # virtualisation.virtualbox = {
-  #     host.enable = true;
-  #     host.enableExtensionPack = true;
-  #     #host.package = pkgs.unstable.virtualbox;
-  # };
-
 
   services.openssh.enable = true;
 
