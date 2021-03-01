@@ -12,6 +12,7 @@ in
     ./redshift
     ./notifications
     ./compton.nix
+    ./git
   ];
 
   nixpkgs.overlays = import ./nixos/overlays.nix config;
@@ -130,32 +131,6 @@ in
     bashrcExtra = ''
       set -o vi
     '';
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "Gábor Kerekes";
-    userEmail = "krks.gbr@gmail.com";
-    extraConfig = {
-      core.autocrlf = "input";
-      core.editor = "vim";
-      GitHub.user = "krksgbr";
-      push.default = "simple";
-    };
-    ignores = [
-      ".DS_Store"
-      "*.iml"
-      ".idea/"
-      "bower_components/"
-      "node_modules/"
-      "npm-debug.log"
-      ".tern-port"
-      ".projectile"
-      "flymd*"
-      "*~"
-      "*.swp"
-      ".krks-private"
-    ];
   };
 
   programs.direnv = {
