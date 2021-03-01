@@ -67,9 +67,13 @@ function ema(){
     # xrandr --output DP-1 --mode 3840x2160 --right-of eDP-1 --scale 0.75x0.75 --rate 25.00
 
     sleep 1
+
     ddcutil setvcp 10 100 --display 1
     polybar external & disown
     nitrogen --restore
+
+    sleep 1
+    xinput map-to-output 17 DP-1
 }
 
 function emd(){
