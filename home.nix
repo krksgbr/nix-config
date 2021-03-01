@@ -14,17 +14,7 @@ in
     ./compton.nix
   ];
 
-  nixpkgs.overlays = [
-    (
-      import (
-        builtins.fetchGit {
-          url = "https://github.com/nix-community/emacs-overlay";
-          rev = "7b8f58785051e2dd729c9a3a6398920e86c24c13"; # 2020-04-14
-        }
-      )
-    )
-    (import ./nixos/overlays.nix config)
-  ];
+  nixpkgs.overlays = import ./nixos/overlays.nix config;
 
   home.packages = with pkgs; [ ]
     ++ (

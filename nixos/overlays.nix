@@ -1,57 +1,46 @@
-config: self: super:
+config:
 let
   unstable = import <unstable> {
     config = config.nixpkgs.config;
   };
-in
-{
-  htop-vim = super.htop.overrideAttrs (oldAttrs: {
-    name = "htop-vim";
-    patches = (oldAttrs.patches or [ ]) ++ [ ./htop-vim.patch ];
-  });
 
-  mkScript = (scriptName: file:
-    let
-      txt = builtins.readFile file;
-    in
-    self.writeShellScriptBin scriptName ''
-      ${txt}
-    ''
-  );
+  myOverlay = self: super:
+    {
+      inherit unstable;
 
-  polybar = unstable.polybar.override {
-    i3Support = true;
-    alsaSupport = true;
-    pulseSupport = true;
-    nlSupport = true;
-  };
+      mkScript = (scriptName: file:
+        let
+          txt = builtins.readFile file;
+        in
+        self.writeShellScriptBin scriptName ''
+          ${txt}
+        ''
+      );
 
-  networkmanager_dmenu = super.networkmanager_dmenu.overrideAttrs (oldAttrs: {
-    patches = (oldAttrs.patches or [ ]) ++ [ ./networkmanager-dmenu.patch ];
-  });
+      htop-vim = super.htop.overrideAttrs (oldAttrs: {
+        name = "htop-vim";
+        patches = (oldAttrs.patches or [ ]) ++ [ ./htop-vim.patch ];
+      });
 
-  lorri = import
-    (builtins.fetchTarball {
-      url = "https://github.com/target/lorri/archive/88c680c9abf0f04f2e294436d20073ccf26f0781.tar.gz";
-      sha256 = "1415mhdr0pwvshs04clfz1ys76r5qf9jz8jchm63l6llaj6m7mrv";
-    }) { };
+      networkmanager_dmenu = super.networkmanager_dmenu.overrideAttrs (oldAttrs: {
+        patches = (oldAttrs.patches or [ ]) ++ [ ./networkmanager-dmenu.patch ];
+      });
 
-  inherit unstable;
-
-  haskell =
-    let
-      ormolu = import
-        (builtins.fetchGit {
-          name = "ormolu";
-          url = "https://github.com/tweag/ormolu.git";
-          rev = "55d8b7f8c482655ea575425e55352e650f304ea0";
-        }) { pkgs = self; };
-    in
-    super.haskell // {
-      packages = super.haskell.packages // {
-        "${ormolu.ormoluCompiler}" = super.haskell.packages.${ormolu.ormoluCompiler}.override {
-          overrides = ormolu.ormoluOverlay;
-        };
-      };
+      break-time = (import
+        (builtins.fetchTarball {
+          url = "https://github.com/cdepillabout/break-time/tarball/5f1f43a464780043318d9f4df0df6f8e8c99accf";
+          sha256 = "0rvp891bkc89icf39xpac0sqfxj6dxia3fscw9065598bn0ciwd6";
+        }));
     };
-}
+in
+[
+  myOverlay
+  (
+    import (
+      builtins.fetchGit {
+        url = "https://github.com/nix-community/emacs-overlay";
+        rev = "7b8f58785051e2dd729c9a3a6398920e86c24c13"; # 2020-04-14
+      }
+    )
+  )
+]

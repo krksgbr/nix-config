@@ -38,7 +38,7 @@ in
     ];
   };
 
-  nixpkgs.overlays = [ (import ./overlays.nix config) ];
+  nixpkgs.overlays = import ./overlays.nix config;
 
   environment.systemPackages = with pkgs;
     [
