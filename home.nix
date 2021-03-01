@@ -139,8 +139,8 @@ in
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
+    enableNixDirenvIntegration = true;
   };
 
   services.udiskie.enable = true;
-
 }
