@@ -41,5 +41,23 @@
 (use-package! exec-path-from-shell)
 (use-package! prettier-js)
 
+;; THEME
+(custom-theme-set-faces! 'doom-solarized-dark
+  '(lsp-face-highlight-textual :background "#00212B" :foreground nil))
+
+(custom-set-faces!
+  '(cursor :background "#00FF00" :foreground "#00FF00" ))
+
+(setq doom-font (font-spec :family "Iosevka" :size 32 :weight 'normal)
+      doom-variable-pitch-font (font-spec :family "Iosevka" :size: 32)
+      doom-unicode-font (font-spec :family "Iosevka" :size 32)
+      doom-big-font (font-spec :family "Iosevka" :size 32)
+      doom-line-numbers-style 'relative
+      doom-themes-enable-bold nil
+      org-ellipsis " ▾ "
+      org-bullets-bullet-list '(">"))
+
+(setq doom-theme 'doom-solarized-dark)
+
 (provide 'config)
 ;;; config.el ends here

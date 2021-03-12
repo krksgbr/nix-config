@@ -179,5 +179,4 @@
        :custom
        ;; customizations and extensions of existing features
        workspace
-       theme
        org)
