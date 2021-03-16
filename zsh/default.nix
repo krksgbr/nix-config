@@ -26,19 +26,19 @@ in
         ];
       in
       ''
-      ${zshrc}
-      export PATH="${PATH}:$PATH"
-      [ -z $TMUX ] && (tmux a &> /dev/null || tmux)
-    '';
+        ${zshrc}
+        export PATH="${PATH}:$PATH"
+        [ -z $TMUX ] && (tmux a &> /dev/null || tmux)
+      '';
     sessionVariables = shellsCommon.sessionVariables
       // {
-           KEY_TIMEOUT = "10";
-           LS_COLORS = "di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43";
-           HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=magenta,fg=black,bold";
-           ENHANCD_HYPHEN_ARG="=";
-           ENHANCD_DOT_ARG=".";
-         }
-      ;
+      KEY_TIMEOUT = "10";
+      LS_COLORS = "di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43";
+      HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND = "bg=magenta,fg=black,bold";
+      ENHANCD_HYPHEN_ARG = "=";
+      ENHANCD_DOT_ARG = ".";
+    }
+    ;
     shellAliases = shellsCommon.shellAliases;
     plugins = with builtins;
       [
@@ -67,7 +67,8 @@ in
             rev = "0f80b8eb3368b46e5e573c1d91ae69eb095db3fb";
           };
         }
-        { name = "zsh-yarn-autocompletions";
+        {
+          name = "zsh-yarn-autocompletions";
           src = fetchGit {
             url = "https://github.com/g-plane/zsh-yarn-autocompletions.git";
             rev = "1a46e038b95a986d651d97f5992093484a9af9ee";
