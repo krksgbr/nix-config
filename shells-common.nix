@@ -14,5 +14,6 @@
   };
   sessionVariables = {
     HOME_CONFIG_DIR = "$HOME/.config/nixpkgs";
+    EDITOR = "vim";
   };
 }
