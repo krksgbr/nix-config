@@ -37,6 +37,7 @@ in
       HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND = "bg=magenta,fg=black,bold";
       ENHANCD_HYPHEN_ARG = "=";
       ENHANCD_DOT_ARG = ".";
+      ZVM_VI_EDITOR="vim";
     }
     ;
     shellAliases = shellsCommon.shellAliases;
