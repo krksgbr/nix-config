@@ -88,6 +88,13 @@ in
             rev = "2ccdacae00750766c13e0b1319c8881dc626d3ec";
           };
         }
+        {
+          name = "zsh-vi-mode";
+          src = fetchGit {
+            url = "https://github.com/jeffreytse/zsh-vi-mode.git";
+            rev = "52b28837730e91780171a74069776d1558f24b1b";
+          };
+        }
       ];
   };
 }
