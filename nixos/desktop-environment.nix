@@ -15,18 +15,18 @@
 
 
   environment.systemPackages = with pkgs; [
-      compton
-      networkmanager_dmenu
-      nitrogen
+    compton
+    networkmanager_dmenu
+    nitrogen
 
-      arc-theme
-      arc-icon-theme
-      hicolor-icon-theme
-      gnome3.nautilus
-      qt5.full
-      pavucontrol
+    arc-theme
+    arc-icon-theme
+    hicolor-icon-theme
+    gnome3.nautilus
+    qt5.full
+    pavucontrol
 
-      # dolphin
+    # dolphin
   ];
 
   services.xserver = {
