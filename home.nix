@@ -19,15 +19,7 @@ in
 
   home.packages = with pkgs; [
     (mkScript "torrents" ./deluge.sh)
-  ]
-  ++ (
-    builtins.attrValues (
-      import ./node-pkgs {
-        inherit pkgs;
-        inherit nodejs;
-      }
-    )
-  );
+  ];
 
   home.file =
     let
