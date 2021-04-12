@@ -50,7 +50,6 @@ in
 
   virtualisation = {
     docker.enable = true;
-    virtualbox.host.enable = true;
     libvirtd.enable = true;
   };
 }
