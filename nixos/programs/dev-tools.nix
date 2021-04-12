@@ -24,7 +24,6 @@ in
       gnumake
       haskellPackages.ormolu
       html-tidy
-      htop-vim
       kitty
       nix-prefetch-scripts
       nodejs

@@ -72,6 +72,11 @@ in
     # package = pkgs.emacsUnstable;
   };
 
+  programs.htop = {
+    enable = true;
+    vimMode = true;
+  };
+
   programs.zathura = {
     enable = true;
   };
