@@ -1,7 +1,7 @@
 ;;; bindings.el --- description -*- lexical-binding: t; -*-
 
 (map!
- "C-\\" #'+treemacs/toggle
+ "C-\\" #'deer
  ;; Easier window navigation
  :en "C-h"   #'evil-window-left
  :en "C-j"   #'evil-window-down
