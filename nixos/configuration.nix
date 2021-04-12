@@ -42,6 +42,13 @@ in
 
   nixpkgs.overlays = import ./overlays.nix config;
 
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
   environment.systemPackages = with pkgs;
     [
       # system
