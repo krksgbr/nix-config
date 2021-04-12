@@ -1,15 +1,5 @@
 { pkgs, ... }:
 let
-  lorri = (
-    let
-      lorri_ = builtins.fetchGit {
-        url = "https://github.com/target/lorri.git";
-        rev = "88c680c9abf0f04f2e294436d20073ccf26f0781";
-      };
-    in
-    import lorri_ { }
-  );
-
   idea_launcher = pkgs.writeShellScriptBin "dea" ''
     idea-community $1 > /dev/null 2>&1 & disown;
   '';
@@ -36,7 +26,6 @@ in
       html-tidy
       htop-vim
       kitty
-      lorri
       nix-prefetch-scripts
       nodejs
       ncdu
@@ -58,7 +47,6 @@ in
     ];
 
   programs.zsh.enable = true;
-  services.lorri.enable = true;
 
   virtualisation = {
     docker.enable = true;
