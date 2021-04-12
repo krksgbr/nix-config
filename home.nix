@@ -15,8 +15,6 @@ in
     ./git
   ];
 
-  nixpkgs.overlays = import ./nixos/overlays.nix config;
-
   home.packages = with pkgs; [
     (mkScript "torrents" ./deluge.sh)
   ];

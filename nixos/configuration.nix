@@ -2,18 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-let
-  nixosHardware = builtins.fetchGit {
-    url = "https://github.com/NixOS/nixos-hardware.git";
-    rev = "cc353d439e3135dbe3f5473d897d2c35537f260c";
-  };
-in
+{ config, pkgs, inputs, lib, ... }:
 {
   imports =
     [
       # Include the results of the hardware scan.
-      "${nixosHardware}/lenovo/thinkpad/t490"
       ./cachix.nix
       ./desktop-environment.nix
       ./hardware-configuration.nix
@@ -33,21 +26,15 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    permittedInsecurePackages = [
-      "openssl-1.0.2u"
-    ];
-  };
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "slack"
+    "zoom"
+    "spotify"
+    "spotify-unwrapped"
+    "joypixels"
+  ];
 
-  nixpkgs.overlays = import ./overlays.nix config;
-
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
+  nixpkgs.overlays = import ./overlays.nix config inputs;
 
   environment.systemPackages = with pkgs;
     [

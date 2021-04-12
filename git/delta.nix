@@ -1,11 +1,6 @@
-{ config, lib, pkgs, ... }:
-let
-  unstable = import <unstable> {
-    config = config;
-  };
-in
+{ lib, pkgs, ... }:
 {
-  home.packages = [ unstable.gitAndTools.delta ];
+  home.packages = [ pkgs.gitAndTools.delta ];
   programs.git.extraConfig = {
       core.pager = "delta";
       delta.side-by-side = true;

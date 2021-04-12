@@ -1,6 +1,7 @@
 {
   shellAliases = {
-    nrs = "sudo nixos-rebuild switch";
+    nrs = ''cd $HOME/nix-config/ && sudo nix-shell shell.nix --command "sudo nixos-rebuild switch --flake '.#'" && cd -'';
+    nrt = ''cd $HOME/nix-config/ && sudo nix-shell shell.nix --command "sudo nixos-rebuild test --flake '.#'" && cd -'';
     hrs = "home-manager switch";
     idea = "idea-community";
     conf = "emacs ~/nix-config & disown";

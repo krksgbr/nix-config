@@ -18,7 +18,7 @@ in
     mpv
     peek
     transmission_gtk
-    unstable.firefox
+    firefox
     # unstable.skype
     zoom-us
 
@@ -32,7 +32,7 @@ in
     (
       wrapChromiumApp {
         name = "slack";
-        app = unstable.slack;
+        app = slack;
       }
     )
 

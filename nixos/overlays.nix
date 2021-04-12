@@ -1,12 +1,11 @@
-config:
+config: inputs:
 let
-  unstable = import <unstable> {
-    config = config.nixpkgs.config;
-  };
-
   myOverlay = self: super:
     {
-      inherit unstable;
+      stable = import inputs.nixpkgs-stable {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
 
       mkScript = (scriptName: file:
         let
@@ -19,7 +18,7 @@ let
 
       htop-vim = super.htop.overrideAttrs (oldAttrs: {
         name = "htop-vim";
-        patches = (oldAttrs.patches or [ ]) ++ [ ./htop-vim.patch ];
+        # patches = (oldAttrs.patches or [ ]) ++ [ ./htop-vim.patch ];
       });
 
       networkmanager_dmenu = super.networkmanager_dmenu.overrideAttrs (oldAttrs: {

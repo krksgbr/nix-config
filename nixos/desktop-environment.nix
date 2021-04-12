@@ -35,9 +35,14 @@
     xkbOptions = "eurosign:e, ctrl:nocaps";
 
     # Enable touchpad support.
-    libinput.enable = true;
-    libinput.naturalScrolling = true;
-    libinput.accelSpeed = "1.0";
+
+    libinput = {
+      enable = true;
+      touchpad = {
+        naturalScrolling = true;
+        accelSpeed = "1.0";
+      };
+    };
 
     desktopManager.xterm.enable = false;
     displayManager.defaultSession = "none+i3";
@@ -124,6 +129,8 @@
     joypixels
     ibm-plex
   ];
+
+  nixpkgs.config.joypixels.acceptLicense = true;
 
   fonts.fontconfig.defaultFonts = {
     emoji = [ "JoyPixels" ];

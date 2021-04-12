@@ -14,8 +14,8 @@ in
       coreutils
       dmg2img
       docker-compose
-      unstable.elmPackages.elm
-      unstable.elmPackages.elm-format
+      elmPackages.elm
+      elmPackages.elm-format
       ffmpeg
       fzy
       gcc
@@ -35,10 +35,10 @@ in
       stack
       tmux
       tree
-      unstable.idea.idea-community
+      stable.idea.idea-community
       idea_launcher
-      unstable.nixpkgs-fmt
-      unstable.nodePackages.node2nix
+      nixpkgs-fmt
+      nodePackages.node2nix
       unzip
       vim
       wget
