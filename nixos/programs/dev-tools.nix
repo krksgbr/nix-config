@@ -17,7 +17,6 @@ in
       elmPackages.elm
       elmPackages.elm-format
       ffmpeg
-      fzy
       gcc
       git
       (pkgs.mkScript "git-recent" ./dev-tools/git-recent)
