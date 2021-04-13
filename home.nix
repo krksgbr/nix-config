@@ -13,6 +13,7 @@ in
     ./notifications
     ./compton.nix
     ./git
+    ./fzf
   ];
 
   home.packages = with pkgs; [
