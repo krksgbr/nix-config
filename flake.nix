@@ -12,14 +12,9 @@
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        { userName = "gabor"; }
         ./nixos/configuration.nix
         "${nixos-hardware}/lenovo/thinkpad/t490"
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.gabor = import ./home.nix;
-        }
       ];
       specialArgs = { inherit inputs; };
     };

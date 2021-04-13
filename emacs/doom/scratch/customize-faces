@@ -1,8 +1,0 @@
-;;(setq doom-theme 'solarized-dark)
- (defun g/doom-customize-faces()
-   (doom-themes-set-faces
-     'doom-solarized-dark
-     (cursor :background magenta :foreground "#00FF00" )
-     (doom-neotree-file-face :foreground  base6)))
- (add-hook! 'doom-init-theme-hook 'g/doom-customize-faces)
-(doom//reload-theme)
