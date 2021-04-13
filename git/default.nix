@@ -5,6 +5,7 @@ in
 {
   imports = [
     ./delta.nix
+    ./scripts.nix
   ];
   programs.git = {
     enable = true;

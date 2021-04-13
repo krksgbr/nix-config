@@ -19,7 +19,6 @@ in
       ffmpeg
       gcc
       git
-      (pkgs.mkScript "git-recent" ./dev-tools/git-recent)
       gnumake
       haskellPackages.ormolu
       html-tidy
