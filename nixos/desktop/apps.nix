@@ -30,6 +30,7 @@ in
     gnome3.nautilus
     gnome3.sushi # file previewer for nautilus
     audacity
+    flameshot
 
     (wrapChromiumApp chromium "chromium")
     (wrapChromiumApp slack "slack")
