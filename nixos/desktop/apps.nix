@@ -28,6 +28,7 @@ in
     signal-desktop
     skype
     gnome3.nautilus
+    gnome3.sushi # file previewer for nautilus
     audacity
 
     (wrapChromiumApp chromium "chromium")
