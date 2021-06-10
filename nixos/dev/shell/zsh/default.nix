@@ -34,7 +34,7 @@
           format = " \([$state( $progress_current/$progress_total)]($style)\)";
         };
         nix_shell = {
-          format = " [|](bright-green) [$name]($style)";
+          format = " [|](bright-green) [❄]($style)";
           style = "bright-green";
         };
       };
