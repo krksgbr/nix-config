@@ -6,7 +6,7 @@
   ];
 
   virtualisation = {
-    docker.enable = true;
+    docker.enable = false;
     libvirtd.enable = true;
   };
 
