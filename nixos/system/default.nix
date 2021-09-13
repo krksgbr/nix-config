@@ -6,6 +6,7 @@
     ./bluetooth.nix
     ./yubikey.nix
     ./networking.nix
+    # ./connman.nix
     ./power.nix
   ];
 
