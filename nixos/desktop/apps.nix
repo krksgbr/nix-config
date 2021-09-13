@@ -20,6 +20,7 @@ let
 in
 {
   hm.home.packages = with pkgs; [
+    anki
     capture
     mpv
     peek
