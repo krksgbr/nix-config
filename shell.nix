@@ -9,5 +9,6 @@ in
 mkShell {
   buildInputs = [
     (nixos { nix.package = nixBin; }).nixos-rebuild
+    nixBin
   ];
 }
