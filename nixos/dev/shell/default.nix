@@ -35,8 +35,8 @@
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
-      enableNixDirenvIntegration = true;
+      nix-direnv.enable = true;
+      nix-direnv.enableFlakes = false;
     };
-
   };
 }
