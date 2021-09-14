@@ -3,7 +3,7 @@
 {
   services.xserver = {
     layout = "us";
-    xkbOptions = "eurosign:e, ctrl:nocaps";
+    xkbOptions = "eurosign:e,ctrl:nocaps";
   };
   # This will apply the X keymap to the console keymap,
   # which affects virtual consoles such as tty
