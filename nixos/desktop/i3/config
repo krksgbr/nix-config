@@ -164,6 +164,7 @@ client.unfocused        #002b36 #073642 #002b36 #073642
 client.urgent           #002b36 #073642 #dc322f #dc322f
 
 exec --no-startup-id nitrogen --restore;
+exec setxkbmap -option "ctrl:nocaps";
 
 # Pulse Audio Controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% # Increase
