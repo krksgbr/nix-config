@@ -17,7 +17,6 @@
         modi = "window,drun";
         combi-modi = "window,drun";
         font = "Iosevka 24";
-        fullscreen = true;
       };
       theme = ./solarized.css;
     };

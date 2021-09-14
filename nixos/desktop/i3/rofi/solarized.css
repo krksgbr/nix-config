@@ -61,10 +61,15 @@ configuration {
     debug: rgba(255, 0, 0, 50%);
 }
 
+element-text, element-icon {
+    background-color: inherit;
+    text-color:       inherit;
+}
 
 window {
     background-color: @base03-a80;
     padding:          5;
+    fullscreen: true;
 }
 
 
