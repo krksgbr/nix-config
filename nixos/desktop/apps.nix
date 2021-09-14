@@ -35,7 +35,7 @@ in
 
     (wrapChromiumApp chromium "chromium")
     (wrapChromiumApp slack "slack")
-    (wrapChromiumApp spotify "spotify")
+    # (wrapChromiumApp spotify "spotify")
     (wrapChromiumApp zoom-us "zoom")
 
     (wrapSite "Calendar" "https://calendar.google.com")
