@@ -36,7 +36,6 @@
 
     programs.htop = {
       enable = true;
-      vimMode = true;
     };
   };
 }
