@@ -2,6 +2,7 @@
   description = "nixos";
 
   inputs = {
+    nixpkgs-legacy.url = "github:nixos/nixpkgs/nixos-20.09";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-21.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
@@ -13,6 +14,23 @@
       system = "x86_64-linux";
       modules = [
         { userName = "gabor"; }
+        {
+          nixpkgs.overlays =
+            let
+              pkgSet = pkgs:
+                import pkgs {
+                  system = "x86_64-linux";
+                  config.allowUnfree = true;
+                };
+            in
+            [
+            (_: _:
+              {
+                stable = pkgSet inputs.nixpkgs-stable;
+                legacy = pkgSet inputs.nixpkgs-legacy;
+              })
+          ];
+        }
         ./nixos/configuration.nix
         "${nixos-hardware}/lenovo/thinkpad/t490"
       ];
