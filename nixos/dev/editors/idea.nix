@@ -9,7 +9,7 @@ in
   hm = {
     home.packages = with pkgs; [
       idea
-      stable.idea.idea-community
+      legacy.idea.idea-community
     ];
     home.file.".ideavimrc".source = ./ideavimrc;
   };
