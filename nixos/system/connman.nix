@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 {
-    networking = {
+  networking = {
     hostName = "nixos";
     extraHosts = "127.0.0.1 nixos";
     wireless = {
@@ -81,4 +81,12 @@
       SingleConnectedTechnology=false
     '';
   };
+
+  hm.home.packages = [
+    pkgs.connman-gtk
+    (pkgs.writeShellScriptBin "conntui" ''
+      ${pkgs.connman-ncurses}/bin/connman_ncurses
+    '')
+  ];
+
 }
