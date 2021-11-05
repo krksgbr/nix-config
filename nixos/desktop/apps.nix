@@ -50,6 +50,7 @@ in
     (wrapSite "Calendar" "https://calendar.google.com")
     (wrapSite "Notion" "https://www.notion.so")
     (wrapSite "Tidal" "https://tidal.com")
+    (wrapSite "Todoist" "https://todoist.com")
 
   ];
 
