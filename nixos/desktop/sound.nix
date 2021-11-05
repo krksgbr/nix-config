@@ -2,5 +2,8 @@
 {
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-  hm.home.packages = [ pkgs.pavucontrol ];
+  hm.home.packages = with pkgs; [
+    pavucontrol
+    pamixer
+  ];
 }
