@@ -61,6 +61,10 @@
 (custom-theme-set-faces! 'doom-solarized-dark
   '(lsp-face-highlight-textual :background "#00212B" :foreground nil))
 
+
+(custom-theme-set-faces! 'doom-solarized-dark
+  '(highlight :background "#00212B" :foreground nil))
+
 (custom-set-faces!
   '(cursor :background "#00FF00" :foreground "#00FF00" ))
 
