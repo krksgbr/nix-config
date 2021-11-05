@@ -32,6 +32,7 @@
       rsync
       rmapi
       jq
+      git-crypt
     ];
 
     programs.htop = {
