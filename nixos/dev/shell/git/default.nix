@@ -23,6 +23,8 @@ in
         ppr = "!f() { git pull upstream refs/pull/`git symbolic-ref --short HEAD | awk -F'/' '{print $2}'`/head;  }; f";
       };
       init.defaultBranch = "main";
+      user.signingkey = "3E64E0EC968DEB05";
+      commit.gpgsign = true;
     };
     ignores = [
       ".DS_Store"
