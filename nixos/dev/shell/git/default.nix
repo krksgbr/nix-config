@@ -39,6 +39,15 @@ in
       ".krks-private"
       "todo.org"
       ".direnv/"
+
+      # scala stuff
+      ".bloop"
+      ".metals"
+      "project/.bloop"
+
+      # dividat-specific
+      "backend/project/metals.sbt"
+      "backend/project/project"
     ];
   };
 
