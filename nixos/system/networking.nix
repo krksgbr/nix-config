@@ -12,4 +12,7 @@
   }];
 
   networking.defaultGateway = "192.168.1.1";
+  hm.home.packages = [
+    pkgs.networkmanagerapplet
+  ];
 }
