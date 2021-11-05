@@ -6,7 +6,7 @@
         name = "zsh-vi-mode";
         src = fetchGit {
           url = "https://github.com/jeffreytse/zsh-vi-mode.git";
-          rev = "2cdeb68d5eab63a8bd951aec52bb407b8445fb1a";
+          rev = "0c6f34a84fa4d5781c36135b3a7fddb426473c1b";
         };
       }
     ];
