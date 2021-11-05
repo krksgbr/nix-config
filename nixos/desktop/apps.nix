@@ -10,10 +10,19 @@ let
           --add-flags "--force-device-scale-factor=2"
       '';
     };
+
+
   wrapSite = name: url:
+    let
+      launchSiteInChromium = pkgs.writeShellScript "launch-site-in-chromium" ''
+        ${pkgs.chromium}/bin/chromium --app=${url} &
+        sleep 2
+        ${pkgs.xdotool}/bin/xdotool search -classname ${name} set_window --class ${name}
+      '';
+    in
     pkgs.makeDesktopItem {
       inherit name;
-      exec = "chromium --app=${url}";
+      exec = launchSiteInChromium;
       comment = "Opens ${url}";
       desktopName = name;
     };
