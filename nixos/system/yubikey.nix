@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs; [
     # yubikey-manager
     yubikey-manager-qt
-    # yubioath-desktop
+    yubioath-desktop
     yubikey-personalization
   ];
 
