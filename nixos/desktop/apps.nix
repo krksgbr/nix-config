@@ -33,6 +33,7 @@ in
     capture
     mpv
     peek
+    plexamp
     transmission_gtk
     firefox
     signal-desktop
