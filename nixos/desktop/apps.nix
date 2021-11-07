@@ -32,6 +32,7 @@ in
     anki
     capture
     mpv
+    obsidian
     peek
     plexamp
     transmission_gtk
