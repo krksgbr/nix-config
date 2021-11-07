@@ -12,6 +12,12 @@
   }];
 
   networking.defaultGateway = "192.168.1.1";
+  networking.allowedTCPPorts = [
+    1234
+    5000
+    8080
+    8888
+  ];
   hm.home.packages = [
     pkgs.networkmanagerapplet
   ];
