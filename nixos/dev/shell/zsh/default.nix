@@ -60,7 +60,7 @@
 
           function kill9 {
             local pid
-            pid=$(ps -f -u $UID | sed 1d | ${fzf} -m | awk '{print $2}')
+            pid=$(procs gabor | fzf --header-lines=2 --layout=reverse | awk '{print $1}')
             if [ "x$pid" != "x" ]; then
               BUFFER="kill -9 $pid"
               zle reset-prompt

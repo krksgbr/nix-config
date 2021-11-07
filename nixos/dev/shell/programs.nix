@@ -27,6 +27,7 @@
       gcc
       gnumake
       html-tidy
+      procs
       python3
       nixpkgs-fmt
       rsync
