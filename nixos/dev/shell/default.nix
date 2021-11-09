@@ -19,6 +19,7 @@
 
   my.shell.sessionVariables = {
     EDITOR = "vim";
+    GPG_TTY = "$(tty)";
   };
 
   hm = {
