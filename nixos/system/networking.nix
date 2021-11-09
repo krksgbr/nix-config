@@ -12,7 +12,7 @@
   }];
 
   networking.defaultGateway = "192.168.1.1";
-  networking.allowedTCPPorts = [
+  networking.firewall.allowedTCPPorts = [
     1234
     5000
     8080
