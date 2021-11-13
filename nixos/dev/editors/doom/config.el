@@ -77,5 +77,29 @@
 
 (setq doom-theme 'doom-solarized-dark)
 
+
+;; ivy-posframe
+;;
+
+(after! ivy-posframe
+  (defun get-posframe-size ()
+    (list
+     :height ivy-posframe-height
+     :width (round (* (frame-width) 0.9))
+     :min-height (or ivy-posframe-min-height
+                     (let ((height (+ ivy-height 1)))
+                       (min height (or ivy-posframe-height height))))
+     :min-width (or ivy-posframe-min-width
+                    (let ((width (round (* (frame-width) 0.62))))
+                      (min width (or ivy-posframe-width width))))))
+  (setq ivy-posframe-size-function #'get-posframe-size)
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+  (setq ivy-posframe-border-width 2)
+  (setq ivy-posframe-parameters
+        '((left-fringe . 16)
+          (right-fringe . 16)
+          (top-fringe . 16)))
+  (custom-set-faces! '(ivy-posframe-border :background "#268bd2")))
+
 (provide 'config)
 ;;; config.el ends here
