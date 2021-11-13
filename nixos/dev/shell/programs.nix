@@ -18,7 +18,6 @@
       nix-prefetch-scripts
       ncdu
       ripgrep
-      tree
       unzip
       wget
       xclip
@@ -36,6 +35,10 @@
       git-crypt
       sad
       fd
+      exa
+      cheat
+      tldr
+      bat
     ];
 
     programs.htop = {

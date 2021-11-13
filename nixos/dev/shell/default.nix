@@ -11,10 +11,12 @@
   my.shell.aliases = {
     nrs = ''cd $HOME/nix-config/ && sudo nix-shell shell.nix --command "sudo nixos-rebuild switch --flake '.#'" && cd -'';
     nrt = ''cd $HOME/nix-config/ && sudo nix-shell shell.nix --command "sudo nixos-rebuild test --flake '.#'" && cd -'';
-    ls = "ls --color=auto";
+    ls = "exa";
     grep = "grep --color=always";
     clip = "xclip -selection clipboard";
     mkinvoice = "node ~/projects/invoicer/run.js";
+    tree = "exa --tree";
+    bat = ''bat --theme="Solarized (dark)"'';
   };
 
   my.shell.sessionVariables = {
