@@ -39,9 +39,6 @@
 (set-formatter! 'ormolu "ormolu" :modes '(haskell-mode))
 (set-formatter! 'nixpkgs-fmt "nixpkgs-fmt" :modes '(nix-mode))
 
-(use-package! exec-path-from-shell)
-(use-package! prettier-js)
-
 ;; THEME
 (custom-theme-set-faces! 'doom-solarized-dark
   '(lsp-face-highlight-textual :background "#00212B" :foreground nil)
