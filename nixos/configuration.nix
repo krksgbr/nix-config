@@ -9,6 +9,7 @@
       ./system
       ./desktop
       ./dev
+      ./etc
     ];
 
   options = {
