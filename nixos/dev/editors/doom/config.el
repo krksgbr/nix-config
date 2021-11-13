@@ -59,11 +59,9 @@
 
 ;; THEME
 (custom-theme-set-faces! 'doom-solarized-dark
-  '(lsp-face-highlight-textual :background "#00212B" :foreground nil))
-
-
-(custom-theme-set-faces! 'doom-solarized-dark
-  '(highlight :background "#00212B" :foreground nil))
+  '(lsp-face-highlight-textual :background "#00212B" :foreground nil)
+  '(highlight :background "#b58900" :foreground "#00212B")
+  '(region :background "#b58900" :foreground "#00212B"))
 
 (custom-set-faces!
   '(cursor :background "#00FF00" :foreground "#00FF00" ))
