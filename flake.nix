@@ -7,6 +7,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, nixos-hardware, ... }: {
@@ -24,12 +25,13 @@
                 };
             in
             [
-            (_: _:
-              {
-                stable = pkgSet inputs.nixpkgs-stable;
-                legacy = pkgSet inputs.nixpkgs-legacy;
-              })
-          ];
+              (_: _:
+                {
+                  stable = pkgSet inputs.nixpkgs-stable;
+                  legacy = pkgSet inputs.nixpkgs-legacy;
+                })
+              inputs.emacs-overlay.overlay
+            ];
         }
         ./nixos/configuration.nix
         "${nixos-hardware}/lenovo/thinkpad/t490"
