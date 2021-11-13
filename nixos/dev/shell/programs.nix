@@ -34,6 +34,8 @@
       rmapi
       jq
       git-crypt
+      sad
+      fd
     ];
 
     programs.htop = {
