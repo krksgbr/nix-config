@@ -9,7 +9,7 @@
     ./touchpad.nix
     ./keyboard.nix
     ./notifications.nix
-    ./redshift.nix
+    ./gammastep.nix
     ./fonts.nix
     ./apps.nix
   ];
