@@ -11,7 +11,7 @@
 
   services.openssh.enable = true;
 
-  programs.gnupg.agent = {
+  hm.services.gpg-agent = {
     enable = true;
     pinentryFlavor = "curses";
   };
