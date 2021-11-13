@@ -1,5 +1,9 @@
 { config, lib, pkgs, ... }:
-
+let
+  nix-env-clean = pkgs.writeShellScriptBin "nix-env-clean" ''
+    nix-env -q | fzf --height 40% -m --reverse | xargs nix-env --uninstall
+  '';
+in
 {
   hm = {
     programs.fzf = {
@@ -39,6 +43,7 @@
       cheat
       tldr
       bat
+      nix-env-clean
     ];
 
     programs.htop = {
