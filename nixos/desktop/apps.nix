@@ -29,7 +29,7 @@ let
 in
 {
   hm.home.packages = with pkgs; [
-    anki
+    anki-bin
     capture
     mpv
     obsidian
