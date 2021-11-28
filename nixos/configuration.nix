@@ -36,6 +36,9 @@
     in
     {
       nixpkgs.config.allowUnfree = true;
+      nix.extraOptions = ''
+      experimental-features = nix-command flakes
+      '';
 
       users.users."${userName}" = lib.mkAliasDefinitions options.user;
 
