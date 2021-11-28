@@ -18,6 +18,7 @@
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
+       hydra
        ligatures
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
@@ -30,6 +31,12 @@
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
+       zen               ; distraction-free coding or writing
+
+
+       :os
+       ;;(:if IS-MAC macos)  ; improve compatibility with macOS
+       tty               ; improve the terminal Emacs experience
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies
@@ -67,7 +74,9 @@
        markdown          ; writing docs for people to ignore
        nix               ; I hereby declare "nix geht mehr!"
        (org              ; organize your plain life in plain text
-        +journal)
+        +journal
+        +roam2
+        +dragndrop)
        purescript        ; javascript, but functional
        scala             ; java, but good
        sh                ; she sells {ba,z,fi}sh shells on the C xor
@@ -88,5 +97,5 @@
 
        :custom
        ;; customizations and extensions of existing features
-       workspace
-       org)
+       tree-sitter
+       workspace)

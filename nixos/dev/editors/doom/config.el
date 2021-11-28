@@ -71,5 +71,10 @@
           (top-fringe . 16)))
   (custom-set-faces! '(ivy-posframe-border :background "#268bd2")))
 
+
+;; org
+
+(setq org-roam-directory "~/org-roam")
+
 (provide 'config)
 ;;; config.el ends here
