@@ -38,6 +38,7 @@ in
     transmission_gtk
     firefox
     signal-desktop
+    tdesktop
     skype
     gnome3.nautilus
     gnome3.sushi # file previewer for nautilus
