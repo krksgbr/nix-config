@@ -42,6 +42,9 @@ in
       "todo.org"
       ".direnv/"
 
+      # ts-server log
+      ".log"
+
       # scala stuff
       ".bloop"
       ".metals"
