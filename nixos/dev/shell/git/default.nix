@@ -19,8 +19,8 @@ in
       push.default = "simple";
       commit.template = "~/${commitTemplate}";
       alias = {
-        pr = "!f() { git fetch -fu upstream refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f";
         ppr = "!f() { git pull upstream refs/pull/`git symbolic-ref --short HEAD | awk -F'/' '{print $2}'`/head;  }; f";
+        lg = "log --graph --pretty=format:'%C(yellow)%h -%C(auto)%d %C(bold cyan)%s %Creset %C(white)(%cr)%Creset %C(dim white)%an'";
       };
       init.defaultBranch = "main";
       user.signingkey = "3E64E0EC968DEB05";
