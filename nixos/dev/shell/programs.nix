@@ -44,6 +44,7 @@ in
       tldr
       bat
       nix-env-clean
+      choose
     ];
 
     programs.htop = {
