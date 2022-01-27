@@ -13,6 +13,7 @@
     ./fonts.nix
     ./apps.nix
     ./flatpak.nix
+    ./gnome-pomodoro.nix
   ];
 
   environment.extraInit = ''
