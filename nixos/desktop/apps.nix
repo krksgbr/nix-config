@@ -43,6 +43,7 @@ in
     gnome3.sushi # file previewer for nautilus
     audacity
     flameshot
+    simplescreenrecorder
 
     (wrapChromiumApp chromium "chromium")
     (wrapChromiumApp slack "slack")
