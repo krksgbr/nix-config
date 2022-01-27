@@ -12,12 +12,14 @@
     ./gammastep.nix
     ./fonts.nix
     ./apps.nix
+    ./flatpak.nix
   ];
 
   environment.extraInit = ''
     # these are the defaults, but some applications need these to be set explicitly
     export XDG_CONFIG_HOME=$HOME/.config
     export XDG_DATA_HOME=$HOME/.local/share
+    export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share
     export XDG_CACHE_HOME=$HOME/.cache
   '';
 
