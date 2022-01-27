@@ -17,6 +17,8 @@
     5000
     8080
     8888
+    9000
+    22
   ];
   hm.home.packages = [
     pkgs.networkmanagerapplet
