@@ -34,7 +34,6 @@ in
     mpv
     obsidian
     peek
-    plexamp
     transmission_gtk
     firefox
     signal-desktop
