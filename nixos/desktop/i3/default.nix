@@ -1,9 +1,10 @@
 { config, lib, pkgs, ... }:
 {
-  imports = [ ./polybar
-              ./networkmanager-dmenu
-              ./rofi
-            ];
+  imports = [
+    ./polybar
+    ./networkmanager-dmenu
+    ./rofi
+  ];
   hm = {
     home.packages = with pkgs; [ brightnessctl nitrogen ];
 
