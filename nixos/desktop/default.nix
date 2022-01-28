@@ -14,6 +14,7 @@
     ./apps.nix
     ./flatpak.nix
     ./gnome-pomodoro.nix
+    ./torrent-client.nix
   ];
 
   environment.extraInit = ''
