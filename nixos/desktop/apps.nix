@@ -47,12 +47,11 @@ in
 
     (wrapChromiumApp chromium "chromium")
     (wrapChromiumApp slack "slack")
-    # (wrapChromiumApp spotify "spotify")
+    (wrapChromiumApp spotify "spotify")
     (wrapChromiumApp zoom-us "zoom")
 
     (wrapSite "Calendar" "https://calendar.google.com")
     (wrapSite "Notion" "https://www.notion.so")
-    (wrapSite "Tidal" "https://tidal.com")
     (wrapSite "Todoist" "https://todoist.com")
 
   ];
