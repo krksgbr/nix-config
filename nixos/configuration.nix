@@ -9,7 +9,7 @@
       ./system
       ./desktop
       ./dev
-      ./etc
+      ./music-tools
     ];
 
   options = {
