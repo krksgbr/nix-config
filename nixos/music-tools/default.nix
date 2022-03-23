@@ -4,9 +4,10 @@
     ./bandcamp-dl.nix
   ];
 
-  hm.home.packages = [
-    pkgs.beets
-    pkgs.sox
+  hm.home.packages = with pkgs; [
+    beets
+    sox
+    kid3
   ];
 
   hm.xdg.configFile."beets/config.yaml".text = ''
