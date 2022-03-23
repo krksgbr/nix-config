@@ -46,5 +46,3 @@ bindkey -r -M vicmd ':'
 
 # set cursor color
 echo -ne "\e]12;#00FF00\a"
-
-ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
