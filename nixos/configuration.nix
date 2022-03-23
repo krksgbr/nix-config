@@ -36,8 +36,17 @@
     in
     {
       nixpkgs.config.allowUnfree = true;
+
+      nixpkgs.config.permittedInsecurePackages = [
+        # dependency of something
+        # would be good to figure out where it comes from
+        "electron-13.6.9"
+      ];
+
+
+
       nix.extraOptions = ''
-      experimental-features = nix-command flakes
+        experimental-features = nix-command flakes
       '';
 
       users.users."${userName}" = lib.mkAliasDefinitions options.user;
