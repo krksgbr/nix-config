@@ -16,7 +16,7 @@
     clip = "xclip -selection clipboard";
     mkinvoice = "node ~/projects/invoicer/run.js";
     tree = "exa --tree";
-    bat = ''bat --theme="Solarized (dark)"'';
+    cat = ''bat --theme="Solarized (dark)"'';
   };
 
   my.shell.sessionVariables = {
