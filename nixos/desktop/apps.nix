@@ -36,7 +36,7 @@ in
     peek
     transmission_gtk
     firefox
-    signal-desktop
+    unstable.signal-desktop
     tdesktop
     skype
     gnome3.nautilus
