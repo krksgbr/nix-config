@@ -44,6 +44,7 @@ in
     audacity
     flameshot
     simplescreenrecorder
+    gthumb
 
     (wrapChromiumApp chromium "chromium")
     (wrapChromiumApp slack "slack")
