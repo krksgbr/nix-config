@@ -78,6 +78,7 @@ in
       nixpkgs-fmt
       morph
       ocamlformat
+      poppler_utils
       procs
       python3
       ripgrep
@@ -89,6 +90,10 @@ in
       unzip
       wget
       xclip
+
+      lilypond
+      fluidsynth
+      midicsv
     ];
 
     programs.htop = {
