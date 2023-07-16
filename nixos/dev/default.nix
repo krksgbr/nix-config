@@ -9,7 +9,10 @@
     ./virtualisation.nix
   ];
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    permitRootLogin = "prohibit-password";
+  };
 
   hm.services.gpg-agent = {
     enable = true;
