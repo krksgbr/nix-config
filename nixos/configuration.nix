@@ -64,19 +64,15 @@
 
 
       users.users."${userName}" = lib.mkAliasDefinitions options.user;
+      users.mutableUsers = true;
 
       user = {
         shell = pkgs.zsh;
         isNormalUser = true;
-        extraGroups = [ "wheel" "video" "tty" ];
-        hashedPassword = "$6$v7qRdhtrUnB.ElX.$KZzCZBgKykz6BOZaPJ05H/rdveUxGgyqu9JsgaBWjL8tkd/gO.4L.YltWALsePOk9ogz8ejealehL5yPZ4eLj/";
+        extraGroups = [ "wheel" "video" "tty" "dialout" ];
       };
 
-      users.users.root = {
-        hashedPassword = "$6$v7qRdhtrUnB.ElX.$KZzCZBgKykz6BOZaPJ05H/rdveUxGgyqu9JsgaBWjL8tkd/gO.4L.YltWALsePOk9ogz8ejealehL5yPZ4eLj/";
-      };
-
-      #nix.settings.trustedUsers = [ userName ];
+      nix.settings.trustedUsers = [ userName ];
       nix.extraOptions = ''
         experimental-features = nix-command flakes
       '';
@@ -90,7 +86,6 @@
       hm.home.stateVersion = config.system.stateVersion;
       #hm.home.file.".config/i3/config".source = ./desktop/i3/config;
 
-      users.mutableUsers = true;
 
       # qemu / utm clipboard sharing
       services.spice-vdagentd.enable = true;
