@@ -27,7 +27,12 @@
       8888
       9000
       22
+      8382
     ];
+
+    services.avahi.enable = true;
+    services.avahi.nssmdns = true;
+
     # hm.home.packages = [
     #   pkgs.networkmanagerapplet
     # ];
