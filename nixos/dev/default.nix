@@ -11,7 +11,7 @@
 
   services.openssh = {
     enable = true;
-    permitRootLogin = "prohibit-password";
+    settings.PermitRootLogin = "prohibit-password";
   };
 
   hm.services.gpg-agent = {

@@ -24,7 +24,7 @@ in
       };
       init.defaultBranch = "main";
       user.signingkey = "3E64E0EC968DEB05";
-      commit.gpgsign = true;
+      commit.gpgsign = false;
     };
     ignores = [
       ".DS_Store"

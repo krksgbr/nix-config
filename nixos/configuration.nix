@@ -42,9 +42,6 @@
       userName = config.userName;
     in
     {
-
-      hardware.video.hidpi.enable = true;
-
       fileSystems."/home/gabor/wormhole" =
         {
           device = "share";
@@ -72,7 +69,8 @@
         extraGroups = [ "wheel" "video" "tty" "dialout" ];
       };
 
-      nix.settings.trustedUsers = [ userName ];
+      programs.zsh.enable = true;
+
       nix.extraOptions = ''
         experimental-features = nix-command flakes
       '';
