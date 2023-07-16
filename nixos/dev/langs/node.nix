@@ -6,6 +6,7 @@
       nodejs
       nodePackages.node2nix
       yarn
+      deno
     ];
     home.sessionPath = [
       "$HOME/.yarn/bin"
