@@ -6,6 +6,14 @@
     ./node.nix
   ];
 
-  hm.home.packages = [ pkgs.lua ];
+  hm.home.packages = with pkgs; [
+    lua
+    # Rust
+    rustc
+    rustfmt
+    cargo
+    cargo-watch
+    rust-analyzer
+  ];
 
 }
