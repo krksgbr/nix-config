@@ -78,6 +78,7 @@ in
       nixpkgs-fmt
       morph
       ocamlformat
+      ouch
       poppler_utils
       procs
       python3
