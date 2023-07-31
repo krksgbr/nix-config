@@ -1,0 +1,48 @@
+# COMPLETION
+zstyle ':completion:*' completer _expand _complete _ignored _approximate
+zstyle ':completion:*' completions 1
+zstyle ':completion:*' glob 1
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
+zstyle ':completion:*' max-errors 2 numeric
+zstyle ':completion:*' prompt '%e'
+zstyle ':completion:*' substitute 1
+
+
+# enable completion menu
+zstyle ':completion:*' menu select
+
+# for all completions: grouping the output
+zstyle ':completion:*' group-name ''
+
+# for all completions: show comments when present
+zstyle ':completion:*' verbose yes
+zstyle :compinstall filename '~/.zshrc'
+
+
+# COLORS
+
+autoload -U colors && colors
+
+ZSH_LS_COLORS="$LS_COLORS"
+zstyle ':completion:*' list-colors "${(@s.:.)ZSH_LS_COLORS}"
+
+# for all completions: grouping / headline / ...
+zstyle ':completion:*:messages' format $'\e[01;35m -- %d -- \e[00;00m'
+zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found -- \e[00;00m'
+zstyle ':completion:*:descriptions' format $'\e[01;34m -- %d -- \e[00;00m'
+zstyle ':completion:*:corrections' format $'\e[01;35m -- %d -- \e[00;00m'
+
+# statusline for many hits
+zstyle ':completion:*:default' select-prompt $'\e[01;35m -- Match %M    %P -- \e[00;00m'
+
+# PROMPT
+
+# remove default indicator
+RPS1=''
+
+# unbind execute-command from vicmd (not using it)
+bindkey -r -M vicmd ' '
+bindkey -r -M vicmd ':'
+
+# set cursor color
+echo -ne "\e]12;#00FF00\a"
