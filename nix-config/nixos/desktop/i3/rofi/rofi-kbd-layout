@@ -1,0 +1,23 @@
+#!/run/current-system/sw/bin/bash
+# language dialog
+
+currentLayout=`setxkbmap -query | grep layout | awk '{print $2}'`
+
+case $currentLayout in
+	us)
+		options="hu\nus"
+		;;
+	hu)
+	  options="us\nhu"
+		;;
+esac
+
+cmd=$(echo -e $options | rofi -width 350 -dmenu -p "> ")
+case $cmd in
+    hu)
+        setxkbmap -layout hu -variant qwerty
+        ;;
+    us)
+        setxkbmap -layout us
+        ;;
+esac

@@ -1,0 +1,7 @@
+output Virtual-1
+crtc 0
+mode 3456x2160_60.00
+pos 0x0
+primary
+rate 59.99
+x-prop-non_desktop 0
