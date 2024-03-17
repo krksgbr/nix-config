@@ -7,8 +7,14 @@
     ./exa
     ./fzf
     ./git
-    # ./kitty
+    ./kitty
     ./neovim
     ./tmux
+  ];
+
+  hm.home.packages = with pkgs; [
+    jq
+    curl
+    imagemagick
   ];
 }

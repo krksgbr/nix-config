@@ -1,7 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, isDarwin, ... }:
 
 {
   hm = {
+    home.packages = with pkgs; if isDarwin then [ reattach-to-user-namespace ] else [ ];
     programs.tmux = {
       enable = true;
       keyMode = "vi";
@@ -11,7 +12,15 @@
         pain-control
         yank
       ];
-      extraConfig = builtins.readFile ./tmux.conf;
+      extraConfig =
+        let
+          defaults =
+            builtins.readFile ./tmux.conf;
+        in
+        ''
+          ${defaults}
+          ${if isDarwin then ''set-option -g default-command "reattach-to-user-namespace -l ''${SHELL}"'' else "" }
+        '';
       # extraConfig = ''
       #   bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
       #   source-file /home/gabor/nix-config/nixos/dev/shell/tmux/tmux.conf

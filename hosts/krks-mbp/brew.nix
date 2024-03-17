@@ -2,4 +2,8 @@
   homebrew = {
     enable = true;
   };
+
+  hm.home.sessionPath = [
+    "/opt/homebrew/bin"
+  ];
 }

@@ -3,10 +3,18 @@
 
   imports = [
     ./brew.nix
+    ./pam.nix
     ../../modules/shell
     ../../modules/programs
-    ../../modules/programs/kitty
+    ../../modules/dev/langs/node.nix
+    ../../modules/music/torrent-client.nix
   ];
+
+  custom.security.pam =
+    {
+      enableSudoTouchIdAuth = true;
+      enablePamReattach = true;
+    };
 
   # Explicitly set home directory for user
   # https://github.com/nix-community/home-manager/issues/4026
@@ -18,12 +26,9 @@
     fi
   '';
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    [
-      pkgs.vim
-    ];
+  environment.systemPackages = with pkgs; [
+    vim
+  ];
 
   environment.etc."hosts" = {
     copy = true;
