@@ -26,6 +26,11 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixos-stable";
     };
+
+    zjstatus = {
+      url = "github:dj95/zjstatus";
+      inputs.nixpkgs.follows = "darwin-stable";
+    };
   };
 
   outputs = inputs@{ self, nix-darwin, ... }:

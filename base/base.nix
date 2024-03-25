@@ -10,6 +10,7 @@
   imports = [
     ./user-alias.nix
     (import ./home-manager.nix { inherit home-manager-modules; })
+    ./konfigue.nix
   ];
   nixpkgs.hostPlatform = system;
   nix.settings.experimental-features = "nix-command flakes";
