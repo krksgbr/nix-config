@@ -1,8 +1,8 @@
 { ... }:
 {
-  hm.programs.exa = {
+  hm.programs.eza = {
     enable = true;
     enableAliases = true;
   };
-  my.shell.aliases.tree = "exa --tree";
+  my.shell.aliases.tree = "eza --tree";
 }

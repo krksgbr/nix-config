@@ -81,7 +81,7 @@ in
       ouch
       poppler_utils
       procs
-      python3
+      # python3
       ripgrep
       rmapi
       rsync

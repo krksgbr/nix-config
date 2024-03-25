@@ -1,5 +1,15 @@
-{stateVersion}: { config, pkgs, lib, options, inputs, ... }:
+{ home-manager-modules }:
+{ config
+, pkgs
+, lib
+, options
+, stateVersion
+, ...
+}:
 {
+  imports = [
+    home-manager-modules
+  ];
   options = {
     hm = lib.mkOption {
       type = options.home-manager.users.type.functor.wrapped;

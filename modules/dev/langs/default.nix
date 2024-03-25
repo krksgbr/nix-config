@@ -14,6 +14,8 @@
     cargo
     cargo-watch
     rust-analyzer
+    go
+    gopls
   ];
 
 }

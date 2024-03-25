@@ -4,17 +4,19 @@
     ../shell/options.nix
     ./bat
     ./direnv
-    ./exa
+    ./eza
     ./fzf
     ./git
     ./kitty
     ./neovim
     ./tmux
+    ./zellij
   ];
 
   hm.home.packages = with pkgs; [
     jq
     curl
     imagemagick
+    procs
   ];
 }

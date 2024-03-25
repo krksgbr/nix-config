@@ -9,6 +9,7 @@
       ./starship.nix
     ];
 
+    # users.defaultUserShell = pkgs.zsh;
 
     programs.zsh = {
       enable = true;
@@ -30,7 +31,7 @@
 
           function kill9 {
             local pid
-            pid=$(procs gabor | fzf --header-lines=2 --layout=reverse | awk '{print $1}')
+            pid=$(procs ${config.username} | fzf --header-lines=2 --layout=reverse | awk '{print $1}')
             if [ "x$pid" != "x" ]; then
               BUFFER="kill -9 $pid"
               zle reset-prompt
@@ -39,7 +40,6 @@
           zle -N kill9
           bindkey -M vicmd ' p' kill9
           ${zshrc}
-
         '';
       sessionVariables = config.my.shell.sessionVariables
         // {

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, isDarwin, ... }:
+{ config, lib, pkgs, myLib, system, ... }:
 let
   darwinKittyConf = ''
     placement_strategy top-left
@@ -22,26 +22,18 @@ let
   '';
 
   kittyConf = ''
-    ${builtins.readFile ./conf/kitty.conf}
+    ${builtins.readFile ./kitty.conf}
   '';
+  isDarwin = myLib.isDarwin system;
 in
 {
   hm.programs.kitty = {
-    enable = false;
-    # shellIntegration.enableZshIntegration = true;
-    # extraConfig = ''
-    #   ${kittyConf}
-    #   ${if isDarwin then darwinKittyConf else ""}
-    # '';
+    enable = true;
+    extraConfig = ''
+      ${kittyConf}
+      ${if isDarwin then darwinKittyConf else ""}
+    '';
   };
-  hm.programs.zsh.initExtra = ''
-    if test -n "$KITTY_INSTALLATION_DIR"; then
-        export KITTY_SHELL_INTEGRATION="enabled"
-        autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
-        kitty-integration
-        unfunction kitty-integration
-    fi
-  '';
   fonts = lib.mkIf isDarwin {
     fontDir.enable = true;
     fonts = [

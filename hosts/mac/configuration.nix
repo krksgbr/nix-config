@@ -1,13 +1,13 @@
-{ pkgs, inputs, config, ... }: {
-  username = "gaborkerekes";
+{ pkgs, inputs, config, system, ... }: {
 
+  username = "gaborkerekes";
   imports = [
     ./brew.nix
     ./pam.nix
-    ../../modules/shell
-    ../../modules/programs
-    ../../modules/dev/langs/node.nix
-    ../../modules/music/torrent-client.nix
+    ./programs/deluge
+    ./programs/orbstack
+    ###################
+    ../../modules/dev
   ];
 
   custom.security.pam =
@@ -28,6 +28,7 @@
 
   environment.systemPackages = with pkgs; [
     vim
+    unstable.deluge
   ];
 
   environment.etc."hosts" = {
@@ -50,19 +51,10 @@
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
 
-  # Necessary for using flakes on this system.
-  nix.settings.experimental-features = "nix-command flakes";
-
-  # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh.enable = true;
-
   # Set Git commit hash for darwin-version.
   system.configurationRevision = with inputs; self.rev or self.dirtyRev or null;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
-
-  # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = "aarch64-darwin";
 }

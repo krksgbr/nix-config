@@ -1,5 +1,7 @@
-{ config, lib, pkgs, isDarwin, ... }:
-
+{ pkgs, myLib, system, ... }:
+let
+  isDarwin = myLib.isDarwin system;
+in
 {
   hm = {
     home.packages = with pkgs; if isDarwin then [ reattach-to-user-namespace ] else [ ];
@@ -27,8 +29,8 @@
       # '';
     };
 
-    programs.zsh.initExtra = ''
-      [ -z $TMUX ] && (tmux a &> /dev/null || tmux)
-    '';
+    # programs.zsh.initExtra = ''
+    #   [ -z $TMUX ] && (tmux a &> /dev/null || tmux)
+    # '';
   };
 }
