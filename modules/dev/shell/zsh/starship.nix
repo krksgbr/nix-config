@@ -4,7 +4,12 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
-      format = "$directory$git_branch$git_commit$git_status$git_state$nix_shell\n$character";
+      format = "$hostname$directory$git_branch$git_commit$git_status$git_state$nix_shell\n$character";
+      hostname = {
+        ssh_only = true;
+        format = "[---->](fg:bright-red) [](fg:bright-red)[$hostname](bold fg:0 bg:bright-red)[](fg:bright-red) [|](bright-green) ";
+        disabled = false;
+      };
       git_branch = {
         format = "[| $branch]($style)";
         style = "bright-green";

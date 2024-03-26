@@ -14,7 +14,6 @@
     (import ./base.nix {
       inherit home-manager-modules;
     })
-    ./konfigue.nix
     configuration
   ];
   specialArgs = {
