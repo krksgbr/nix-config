@@ -4,6 +4,7 @@
     ./elm.nix
     ./haskell.nix
     ./node.nix
+    ./go.nix
   ];
 
   hm.home.packages = with pkgs; [
@@ -14,8 +15,6 @@
     cargo
     cargo-watch
     rust-analyzer
-    go
-    gopls
   ];
 
 }

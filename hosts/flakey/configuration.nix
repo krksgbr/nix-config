@@ -2,6 +2,7 @@
 {
   imports = [
     ./orbstack.nix
+    ./avahi.nix
     ../../modules/dev
   ];
 

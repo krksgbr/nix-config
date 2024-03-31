@@ -20,7 +20,7 @@
           "cd -P ${konfigue-path} && sudo nixos-rebuild ${cmd} --flake .#${hostName} && cd -"
         else
           if cmd == "switch" then
-            "darwin-rebuild  --flake ${konfigue-path}#${hostName}"
+            "darwin-rebuild switch --flake ${konfigue-path}#${hostName}"
           else
             ''echo "${usage}"'';
     in

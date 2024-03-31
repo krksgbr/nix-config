@@ -6,6 +6,7 @@ in
   imports = [
     ./delta.nix
     ./scripts.nix
+    ./lazygit.nix
   ];
   hm.programs.git = {
     enable = true;
@@ -54,6 +55,7 @@ in
       "backend/project/metals.sbt"
       "backend/project/project"
       ".envrc"
+      "justfile"
     ];
   };
 

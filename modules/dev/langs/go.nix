@@ -1,19 +1,16 @@
-{ pkgs, myLib, system, ... }:
+{ pkgs, system, myLib, ... }:
 let
-  gopls =
+  go =
     if myLib.isDarwin system then
       {
-        homebrew.brews = [ "gopls" ];
+        homebrew.brews = [ "gopls" "go" ];
       }
     else
       {
-        hm.home.packages = [ pkgs.unstable.gopls ];
+        hm.home.packages = with pkgs; [ unstable.gopls go ];
       };
 in
-gopls // {
-  hm.home.packages = [
-    pkgs.go
-  ];
+go // {
   hm.programs.zsh.initExtra = ''
     export GOPATH=$HOME/go
   '';

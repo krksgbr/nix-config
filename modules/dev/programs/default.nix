@@ -18,5 +18,6 @@
     curl
     imagemagick
     procs
+    just
   ];
 }
